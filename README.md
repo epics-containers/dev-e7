@@ -26,4 +26,4 @@ cd <my_workspace_folder>/dls-python-workspace
 git pull
 ```
 
-If you want to version control your changes then use a fork of git@github.com:epics-containers/dls-python-workspace.git so you can push your indevidual changes back.
+If you want to version control your changes then use a fork of git@github.com:epics-containers/dls-python-workspace.git so you can push your individual changes back.
