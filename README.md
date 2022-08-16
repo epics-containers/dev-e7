@@ -1,5 +1,5 @@
-# dls-python-workspace
-DLS python workspace files
+# vscode-python3-workspace
+Workspace settings files for python projects including a developer container.
 
 ## How to adopt
 
@@ -22,8 +22,8 @@ By default the workspace will contain a single folder ``.devcontainer``. If need
 You are free to make changes to the workspace files. You can re-adopt updates with
 
 ```bash
-cd <my_workspace_folder>/dls-python-workspace
+cd <my_workspace_folder>/vscode-python3-workspace
 git pull
 ```
 
-If you want to version control your changes then use a fork of git@github.com:epics-containers/dls-python-workspace.git so you can push your individual changes back.
+If you want to version control your changes then use a fork of git@github.com:epics-containers/vscode-python3-workspace.git so you can push your individual changes back.
