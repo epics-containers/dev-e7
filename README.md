@@ -7,10 +7,10 @@ Choose a workspace folder. This may have multiple python projects as subfolders 
 
 ```bash
 cd <my_workspace_folder>
-git clone git@github.com:epics-containers/dls-python-workspace.git
-ln -s  dls-python-workspace/.devcontainer .
-ln -s  dls-python-workspace/dls-python-workspace.code-workspace .
-code dls-python-workspace.code-workspace
+git clone git@github.com:epics-containers/vscode-python3-workspace.git
+ln -s  vscode-python3-workspace/.devcontainer .
+ln -s  vscode-python3-workspace/vscode-python3.code-workspace .
+code vscode-python3.code-workspace
 ```
 
 Click "Reopen in a Container" when prompted.
