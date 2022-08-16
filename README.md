@@ -15,6 +15,8 @@ code dls-python-workspace.code-workspace
 
 Click "Reopen in a Container" when prompted.
 
+By default the workspace will contain a single folder ``.devcontainer``. If needed edit these files to alter the developer container and choose ``Rebuild Container``.
+
 ## Adopting updates
 
 You are free to make changes to the workspace files. You can re-adopt updates with
