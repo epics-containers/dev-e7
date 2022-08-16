@@ -1,0 +1,60 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/python-3
+{
+    "name": "Python 3",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "target": "developer",
+        "context": ".",
+        "args": {}
+    },
+    "remoteEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}"
+    },
+    // Set *default* container specific settings.json values on container create.
+    "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+        "python.linting.mypyEnabled": true,
+        "python.linting.enabled": true,
+        "python.testing.pytestArgs": [],
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestEnabled": true,
+        "python.formatting.provider": "black",
+        "python.languageServer": "Pylance",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    // Add the IDs of extensions you want installed when the container is created.
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "streetsidesoftware.code-spell-checker",
+        "ryanluker.vscode-coverage-gutters",
+        "mhutchie.git-graph",
+        "eamodio.gitlens",
+        "gruntfuggly.todo-tree",
+        "redhat.vscode-yaml",
+        "nsd.vscode-epics",
+        "alefragnani.bookmarks"
+    ],
+    // Make sure the files we are mapping into the container exist on the host
+    // these files are mapped to get user profile settings
+    "initializeCommand": "bash -c 'for i in $HOME/.inputrc $HOME/.bashrc_dev; do [ -f $i ] || touch $i; done'",
+    "runArgs": [
+        "--privileged",
+        "--net=host",
+        "-v=${localEnv:HOME}/.ssh:/root/.ssh",
+        "-v=${localEnv:HOME}/.bashrc_dev:/root/.bashrc",
+        "-v=${localEnv:HOME}/.inputrc:/root/.inputrc"
+    ],
+    "mounts": [
+        // map in home directory - not strictly necessary but may be useful
+        "source=${localEnv:HOME},target=${localEnv:HOME},type=bind,consistency=cached"
+    ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "workspaceFolder": "/workspace"
+}
