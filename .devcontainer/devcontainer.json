@@ -4,7 +4,6 @@
     "name": "Python 3",
     "build": {
         "dockerfile": "Dockerfile",
-        "target": "developer",
         "context": ".",
         "args": {}
     },
@@ -53,7 +52,8 @@
     ],
     "mounts": [
         // map in home directory - not strictly necessary but may be useful
-        "source=${localEnv:HOME},target=${localEnv:HOME},type=bind,consistency=cached"
+        "source=${localEnv:HOME},target=${localEnv:HOME},type=bind,consistency=cached",
+        "source=/tmp,target=/tmp,type=bind,consistency=cached"
     ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
     "workspaceFolder": "/workspace"

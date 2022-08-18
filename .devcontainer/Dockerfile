@@ -1,34 +1,27 @@
-# ideas from https://www.docker.com/blog/containerized-python-development-part-1/
-
-# This file is for use as a .vscode devcontainer as well as a runtime 
-# container. The devcontainer should be rootful and use podman or docker 
+# This file is for use as a .vscode devcontainer 
+# The devcontainer should run as root and use podman or docker 
 # with user namespaces.
 
-FROM python:3.10 as base
-
-# use root to pin where the packages will install
-USER root
-ENV PYTHONPREFIX=/python
-ENV PATH=${PYTHONPREFIX}/bin:$PATH
-ENV PYTHONPATH=${PYTHONPREFIX}
+FROM python:3.10
 
 # install additional packages
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
     build-essential \
+    busybox \
+    git \
+    net-tools \
     python3-pyqt5 \
-    && rm -rf /var/lib/apt/lists/*
+    vim \
+    && rm -rf /var/lib/apt/lists/* \
+    && busybox --install
 
-FROM base as developer
+COPY dev_requirements.txt .
 
-COPY . .
+ENV VIRTUALENV=/virtualenv
+RUN python3 -m venv ${VIRTUALENV}
+ENV PATH=${VIRTUALENV}/bin:$PATH
 
-# install deveoloper packages
-RUN mkdir -p ${PYTHONPREFIX} && \
-    pip install --upgrade pip && \
-    pip install --prefix ${PYTHONPREFIX} -r dev_requirements.txt 
-
-FROM base as runtime
-
-COPY --from=developer ${PYTHONPREFIX} ${PYTHONPREFIX}
-
+# install developer packages
+RUN pip install --upgrade pip && 
+    pip install -r dev_requirements.txt 
