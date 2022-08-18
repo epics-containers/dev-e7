@@ -1,7 +1,19 @@
 {
     "folders": [
         {
+            "path": "python3-pip-skeleton-cli"
+        },
+        {
+            "path": "python3-pip-skeleton"
+        },
+        {
             "path": ".devcontainer"
+        },
+        {
+            "path": "dev-c7"
+        },
+        {
+            "path": "vscode-python3-workspace"
         }
     ],
     "settings": {
