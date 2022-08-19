@@ -23,5 +23,5 @@ RUN python3 -m venv ${VIRTUALENV}
 ENV PATH=${VIRTUALENV}/bin:$PATH
 
 # install developer packages
-RUN pip install --upgrade pip && 
+RUN pip install --upgrade pip && \
     pip install -r dev_requirements.txt 
