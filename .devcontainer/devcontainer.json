@@ -44,8 +44,9 @@
     // these files are mapped to get user profile settings
     "initializeCommand": "bash -c 'for i in $HOME/.inputrc $HOME/.bashrc_dev; do [ -f $i ] || touch $i; done'",
     "runArgs": [
-        "--privileged",
         "--net=host",
+        "--security-opt=label=type:container_runtime_t",
+        "--annotation=run.oci.keep_original_groups=1",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
         "-v=${localEnv:HOME}/.bashrc_dev:/root/.bashrc",
         "-v=${localEnv:HOME}/.inputrc:/root/.inputrc"
