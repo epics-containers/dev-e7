@@ -8,7 +8,8 @@
         "args": {}
     },
     "remoteEnv": {
-        "DISPLAY": "${localEnv:DISPLAY}"
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "DOCKERD_OPT": "--iptables=false"
     },
     // Set *default* container specific settings.json values on container create.
     "settings": {
@@ -40,16 +41,16 @@
         "nsd.vscode-epics",
         "alefragnani.bookmarks"
     ],
-    // Make sure the files we are mapping into the container exist on the host
-    // these files are mapped to get user profile settings
-    "initializeCommand": "bash -c 'for i in $HOME/.inputrc $HOME/.bashrc_dev; do [ -f $i ] || touch $i; done'",
+    // expose a user socket for host podman API
+    "initializeCommand": "systemctl --user enable podman.socket",
     "runArgs": [
-        "--net=host",
+        // "--net=host",
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
-        "-v=${localEnv:HOME}/.bashrc_dev:/root/.bashrc",
-        "-v=${localEnv:HOME}/.inputrc:/root/.inputrc"
+        "-v=${localWorkspaceFolder}${localWorkspaceFolderBasename}/.bashrc_dev:/root/.bashrc",
+        "-v=${localWorkspaceFolder}${localWorkspaceFolderBasename}/.inputrc:/root/.inputrc",
+        "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.socket:/run/podman/podman.sock"
     ],
     "mounts": [
         // map in home directory - not strictly necessary but may be useful
