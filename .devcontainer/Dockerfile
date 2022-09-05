@@ -4,19 +4,15 @@
 #
 # It also can be run standalone with podman or docker.
 
-FROM python:3.10
+FROM mcr.microsoft.com/vscode/devcontainers/python:0-3.10-bullseye
 
 # install additional packages
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
-    build-essential \
-    busybox \
-    git \
     net-tools \
     python3-pyqt5 \
     vim \
-    && rm -rf /var/lib/apt/lists/* \
-    && busybox --install
+    && rm -rf /var/lib/apt/lists/* 
 
 COPY dev_requirements.txt .
 
@@ -38,7 +34,7 @@ RUN pip install --upgrade pip && \
 # use vscode script to enable docker inside this container
 # modify the deamon script to disbale iptables in dockerd (for DLS compatibilty)
 ENV DOCKERD_OPT="--iptables=false"
-RUN busybox wget https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/docker-in-docker-debian.sh && \
+RUN wget https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/docker-in-docker-debian.sh && \
     bash docker-in-docker-debian.sh && \
     sed -i 's/dockerd $CUSTOMDNS/dockerd $DOCKERD_OPT $CUSTOMDNS/' /usr/local/share/docker-init.sh
 

@@ -43,20 +43,23 @@
     ],
     // expose a user socket for host podman API
     "initializeCommand": "systemctl --user enable podman.socket",
+    "postCreateCommand": "/usr/local/share/docker-init.sh",
     "runArgs": [
-        // "--net=host",
-        "--security-opt=label=type:container_runtime_t",
+        "--net=podman",
+        "--security-opt=label=disable",
         "--annotation=run.oci.keep_original_groups=1",
+        "--privileged",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
-        "-v=${localWorkspaceFolder}${localWorkspaceFolderBasename}/.bashrc_dev:/root/.bashrc",
-        "-v=${localWorkspaceFolder}${localWorkspaceFolderBasename}/.inputrc:/root/.inputrc",
-        "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.socket:/run/podman/podman.sock"
+        "-v=${localWorkspaceFolder}/.bashrc_dev:/root/.bashrc",
+        "-v=${localWorkspaceFolder}/.inputrc:/root/.inputrc",
+        "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.sock:/run/podman/podman.sock"
     ],
     "mounts": [
         // map in home directory - not strictly necessary but may be useful
         "source=${localEnv:HOME},target=${localEnv:HOME},type=bind,consistency=cached",
         "source=/tmp,target=/tmp,type=bind,consistency=cached"
     ],
-    "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+    // mount the folder above to make it easy to add peers to this workspace
+    "workspaceMount": "source=${localWorkspaceFolder}/..,target=${localWorkspaceFolder}/..,type=bind",
     "workspaceFolder": "${localWorkspaceFolder}"
 }
