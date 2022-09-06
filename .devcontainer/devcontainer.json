@@ -48,6 +48,7 @@
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
+        "-v=${localEnv:HOME}/.bash_history:/root/.bash_history",
         "-v=${localWorkspaceFolder}/.bashrc_dev:/root/.bashrc",
         "-v=${localWorkspaceFolder}/.inputrc:/root/.inputrc",
         "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock"
@@ -58,6 +59,7 @@
         "source=/tmp,target=/tmp,type=bind,consistency=cached"
     ],
     // mount the parent folder so we can add peers to the workspace
+    // use localWorkspaceFolder so that paths inside and outside the container match
     "workspaceMount": "source=${localWorkspaceFolder}/..,target=${localWorkspaceFolder}/..,type=bind",
     "workspaceFolder": "${localWorkspaceFolder}"
 }
