@@ -41,7 +41,7 @@
         "alefragnani.bookmarks"
     ],
     // expose a user socket for host podman API
-    "initializeCommand": "systemctl --user enable podman.socket",
+    "initializeCommand": "systemctl --user restart podman.socket",
     "runArgs": [
         "--net=host",
         "--privileged",
