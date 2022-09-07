@@ -26,6 +26,7 @@ RUN pip install -r dev_requirements.txt
 # enable docker in docker with vscode devcontainer script
 # RUN wget https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/docker-in-docker-debian.sh && \
 #     bash docker-in-docker-debian.sh
+# uncomment above and delete below to have docker inside the container
 
 # add the docker cli only (for driving the host podman)
 RUN docker_url=https://download.docker.com/linux/static/stable/x86_64 && \
@@ -33,5 +34,8 @@ RUN docker_url=https://download.docker.com/linux/static/stable/x86_64 && \
     curl -fsSL $docker_url/docker-$docker_version.tgz | \
     tar zxvf - --strip 1 -C /usr/bin docker/docker
 
+# uncomment for a useful shell prompt
 # opionated shell prompt which shows which container you are in
 # RUN bash -c "curl -sS https://starship.rs/install.sh | sh -s -- -y"
+# echo 'eval "$(starship init bash)"' >> .bashrc_dev
+
