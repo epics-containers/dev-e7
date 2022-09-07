@@ -34,9 +34,10 @@ Use cases:
 
 ## .bashrc_dev
 - This file is mounted as /root/.bashrc and provides a starting point for
-  your profile inside the container. Includes autocompletion and prompt 
-  definitions.
-
+  your bash profile inside the container. Includes:
+  - autocompletion for git and bash
+  - shared bash history with the host
+  - bash prompt with info including git branch
 # How to adopt
 
 - Take a copy of the template project 

@@ -47,6 +47,8 @@
         "--privileged",
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
+        "--storage-opt=ignore_chown_errors=true",
+        "-v/tmp:/tmp",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
         "-v=${localEnv:HOME}/.bash_history:/root/.bash_history",
         "-v=${localWorkspaceFolder}/.bashrc_dev:/root/.bashrc",
