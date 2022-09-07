@@ -2,15 +2,17 @@
 # The devcontainer should run as root and use podman or 
 # docker with user namespaces.
 
-FROM mcr.microsoft.com/vscode/devcontainers/python:0-3.10-bullseye
+FROM python:3.10
 
 # install additional packages
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
+    busybox \
     net-tools \
     python3-pyqt5 \
     vim \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && busybox --install
 
 COPY dev_requirements.txt .
 
