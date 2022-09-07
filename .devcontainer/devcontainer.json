@@ -47,6 +47,8 @@
         "--privileged",
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
+        "--storage-opt=ignore_chown_errors=true",
+        "-v/tmp:/tmp",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
         "-v=${localEnv:HOME}/.bash_history:/root/.bash_history",
         "-v=${localWorkspaceFolder}/.bashrc_dev:/root/.bashrc",
@@ -55,8 +57,7 @@
     ],
     "mounts": [
         // map in home directory - not strictly necessary but may be useful
-        "source=${localEnv:HOME},target=${localEnv:HOME},type=bind,consistency=cached",
-        "source=/tmp,target=/tmp,type=bind,consistency=cached"
+        "source=${localEnv:HOME},target=${localEnv:HOME},type=bind,consistency=cached"
     ],
     // mount the parent folder so we can add peers to the workspace
     // use localWorkspaceFolder so that paths inside and outside the container match
