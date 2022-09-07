@@ -1,0 +1,31 @@
+# ~/.bashrc_dev: executed by bash(1) for non-login shells in vscode devcontainers
+
+export LS_OPTIONS='--color=auto'
+eval "$(dircolors)"
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
+alias podman=docker
+
+# setup completion
+if [[ -f /usr/share/bash-completion/completions/git ]] ; then
+ source /usr/share/bash-completion/completions/git
+elif [[ -f /etc/bash_completion.d/git ]] ; then
+  source /etc/bash_completion.d/git
+fi
+
+# share history between all terminal instances
+export HISTIGNORE="&:l[sl]:[fb]g:exit"
+export HISTFILESIZE=10000
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+
+# prompt
+function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
+}
+PS1="\[\e[32m\]\$(parse_git_branch)\[\e[m\][\[\e[34m\]\u@\h\[\e[m\] \W]\$ "
+if [[ -f /etc/centos-release ]] ; then
+    PS1="[C7] ${PS1}"
+fi
+export PS1

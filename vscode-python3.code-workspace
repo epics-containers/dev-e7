@@ -1,7 +1,7 @@
 {
     "folders": [
         {
-            "path": ".devcontainer"
+            "path": "."
         }
     ],
     "settings": {
@@ -46,8 +46,8 @@
         "tasks": [
             {
                 "type": "shell",
-                "label": "Tests with coverage",
-                "command": "pipenv run tests",
+                "label": "Docs, Lint and Tests with coverage",
+                "command": "tox -p",
                 "options": {
                     "cwd": "${workspaceRoot}"
                 },

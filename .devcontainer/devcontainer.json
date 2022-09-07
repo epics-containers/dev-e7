@@ -40,22 +40,26 @@
         "nsd.vscode-epics",
         "alefragnani.bookmarks"
     ],
-    // Make sure the files we are mapping into the container exist on the host
-    // these files are mapped to get user profile settings
-    "initializeCommand": "bash -c 'for i in $HOME/.inputrc $HOME/.bashrc_dev; do [ -f $i ] || touch $i; done'",
+    // expose a user socket for host podman API
+    "initializeCommand": "systemctl --user restart podman.socket",
     "runArgs": [
         "--net=host",
+        "--privileged",
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
-        "-v=${localEnv:HOME}/.bashrc_dev:/root/.bashrc",
-        "-v=${localEnv:HOME}/.inputrc:/root/.inputrc"
+        "-v=${localEnv:HOME}/.bash_history:/root/.bash_history",
+        "-v=${localWorkspaceFolder}/.bashrc_dev:/root/.bashrc",
+        "-v=${localWorkspaceFolder}/.inputrc:/root/.inputrc",
+        "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock"
     ],
     "mounts": [
         // map in home directory - not strictly necessary but may be useful
         "source=${localEnv:HOME},target=${localEnv:HOME},type=bind,consistency=cached",
         "source=/tmp,target=/tmp,type=bind,consistency=cached"
     ],
-    "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+    // mount the parent folder so we can add peers to the workspace
+    // use localWorkspaceFolder so that paths inside and outside the container match
+    "workspaceMount": "source=${localWorkspaceFolder}/..,target=${localWorkspaceFolder}/..,type=bind",
     "workspaceFolder": "${localWorkspaceFolder}"
 }
