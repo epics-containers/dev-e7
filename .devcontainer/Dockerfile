@@ -24,7 +24,7 @@ ENV PATH=${VIRTUALENV}/bin:$PATH
 RUN pip install -r dev_requirements.txt 
 
 
-# add podman and docker inside / podman outside capabilities ###################
+########## add podman and docker inside / podman outside capabilities ##########
 
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -60,13 +60,16 @@ RUN mkdir -p /var/lib/shared/overlay-images \
 
 
 ENV _CONTAINERS_USERNS_CONFIGURED=""
-# Point rootful podman at the default docker socket
-ENV CONTAINER_HOST="unix:///var/run/docker.sock"
-# Above means that you can: 
-# enable a user socket to user podman with 'systemctl restart podman.socket'
-# mount the socket with podman run options:
-#   -v /run/user/$(id -u)/podman/podman.sock:/var/run/docker.sock
-# Then container's docker and podman (-r) clients will see the user's host podman
 
-# let docker clients find a docker cli if they need it
+# Point remote podman at the outside podman's user socket
+# This requires:
+#   systemctl restart podman.socket
+#   podman -v /run/user/$(id -u)/podman/podman.sock:/podman.sock ...
+ENV CONTAINER_HOST="unix:/podman.sock"
+
+# let docker clients find a docker-like cli if they need it
 RUN ln -s /usr/bin/podman /usr/bin/docker
+
+# add script to start podman service for serving docker clients
+COPY podman_service /usr/bin
+RUN chmod +x /usr/bin/podman_service

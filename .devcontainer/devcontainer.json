@@ -43,7 +43,6 @@
     // expose a user socket for host podman API
     "initializeCommand": "systemctl --user restart podman.socket",
     "runArgs": [
-        "--net=host",
         "--privileged",
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
@@ -53,7 +52,7 @@
         "-v=${localEnv:HOME}/.bash_history:/root/.bash_history",
         "-v=${localWorkspaceFolder}/.bashrc_dev:/root/.bashrc",
         "-v=${localWorkspaceFolder}/.inputrc:/root/.inputrc",
-        "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock"
+        "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.sock:/podman.sock"
     ],
     "mounts": [
         // map in home directory - not strictly necessary but may be useful
