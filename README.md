@@ -34,7 +34,7 @@ Use cases:
   - shared bash history with the host
   - bash prompt with info including git branch
   
-  # How to adopt
+# How to adopt
 
 - Take a copy of the template project 
   - go to https://github.com/epics-containers/vscode-python3-workspace
