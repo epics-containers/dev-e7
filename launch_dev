@@ -12,10 +12,10 @@ podman build -t dev_ws ${thisdir}/.devcontainer > /tmp/dev_ws.log
 echo "build"
 
 mounts="
--v/tmp:/tmp
 -v/${pwd}:${pwd}
 -v=${HOME}/.ssh:/root/.ssh
 -v=${HOME}/.bash_history:/root/.bash_history
+-v=${HOME}:${HOME}
 -v=.bashrc_dev:/root/.bashrc
 -v=.inputrc:/root/.inputrc
 -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/podman.sock"

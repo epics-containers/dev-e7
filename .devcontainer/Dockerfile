@@ -4,34 +4,13 @@
 
 FROM python:3.10
 
-# install additional packages
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
-    busybox \
-    net-tools \
-    python3-pyqt5 \
-    vim \
-    && rm -rf /var/lib/apt/lists/* \
-    && busybox --install
-
-COPY dev_requirements.txt .
-
-ENV VIRTUALENV=/venv
-RUN python3 -m venv ${VIRTUALENV}
-ENV PATH=${VIRTUALENV}/bin:$PATH
-
-# install developer packages
-RUN pip install -r dev_requirements.txt 
-
-
 ########## add podman and docker inside / podman outside capabilities ##########
 
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
     ca-certificates \
     fuse-overlayfs \
-    podman \
-    && rm -rf /var/lib/apt/lists/*
+    podman
 
 # get default config files for containers and storage
 ARG _URL="https://raw.githubusercontent.com/containers/podman/main/"
@@ -47,6 +26,8 @@ RUN sed -e 's|^#mount_program|mount_program|g' \
 
 # container cache must me outside the container so no overlay on overlay
 VOLUME /var/lib/containers
+# put tmp outside of overlay filesystem for performance
+VOLUME /tmp
 
 # supply the lockfiles for the container filesystems
 RUN mkdir -p /var/lib/shared/overlay-images \
@@ -57,7 +38,6 @@ RUN mkdir -p /var/lib/shared/overlay-images \
     touch /var/lib/shared/overlay-layers/layers.lock && \
     touch /var/lib/shared/vfs-images/images.lock && \
     touch /var/lib/shared/vfs-layers/layers.lock
-
 
 ENV _CONTAINERS_USERNS_CONFIGURED=""
 
@@ -73,3 +53,24 @@ RUN ln -s /usr/bin/podman /usr/bin/docker
 # add script to start podman service for serving docker clients
 COPY podman_service /usr/bin
 RUN chmod +x /usr/bin/podman_service
+
+########## podman and docker done ##############################################
+
+# install additional packages
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+    busybox \
+    net-tools \
+    python3-pyqt5 \
+    vim \
+    x11-apps \
+    && busybox --install
+
+COPY dev_requirements.txt .
+
+ENV VIRTUALENV=/venv
+RUN python3 -m venv ${VIRTUALENV}
+ENV PATH=${VIRTUALENV}/bin:$PATH
+
+# install developer packages
+RUN pip install -r dev_requirements.txt 

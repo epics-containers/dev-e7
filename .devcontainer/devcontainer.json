@@ -44,11 +44,12 @@
     "initializeCommand": "systemctl --user restart podman.socket",
     "runArgs": [
         "--privileged",
+        "--network=podman",
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
         "--storage-opt=ignore_chown_errors=true",
-        "-v/tmp:/tmp",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
+        "-v=/tmp/.X11-unix/:/tmp/.X11-unix/",
         "-v=${localEnv:HOME}/.bash_history:/root/.bash_history",
         "-v=${localWorkspaceFolder}/.bashrc_dev:/root/.bashrc",
         "-v=${localWorkspaceFolder}/.inputrc:/root/.inputrc",
