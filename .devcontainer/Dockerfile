@@ -60,6 +60,7 @@ RUN chmod +x /usr/bin/podman_service
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
     busybox \
+    graphviz \
     net-tools \
     python3-pyqt5 \
     vim \
