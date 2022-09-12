@@ -45,6 +45,8 @@ Use cases:
   - code vscode-python3.code-workspace
 - Click "Reopen in a Container" when prompted
 - Add as many peer projects as you wish to the workspace
+- choose ``Python: Select interpreter`` command (access via ctrl-shift-P) 
+  choose ``select at workspace level`` and select /venv/bin/python.
 
 # Adopting updates
 
