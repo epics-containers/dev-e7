@@ -2,7 +2,7 @@
 # The devcontainer should run as root and use podman or 
 # docker with user namespaces.
 
-FROM python:3.10
+FROM docker.io/python:3.10
 
 ########## add podman and docker inside / podman outside capabilities ##########
 
@@ -11,7 +11,7 @@ RUN apt-get update && apt-get upgrade -y && \
     ca-certificates \
     fuse-overlayfs \
     podman
-
+ 
 # get default config files for containers and storage
 ARG _URL="https://raw.githubusercontent.com/containers/podman/main/"
 ADD $_URL/contrib/podmanimage/stable/containers.conf /etc/containers/containers.conf
