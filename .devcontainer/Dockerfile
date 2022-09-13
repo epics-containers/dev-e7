@@ -22,7 +22,8 @@ RUN sed -e 's|^#mount_program|mount_program|g' \
            -e '/additionalimage.*/a "/var/lib/shared",' \
            -e 's|^mountopt[[:space:]]*=.*$|mountopt = "nodev,fsync=0"|g' \
            /usr/share/containers/storage.conf \
-           > /etc/containers/storage.conf
+           > /etc/containers/storage.conf && \
+    echo 'unqualified-search-registries=["docker.io"]' >> /etc/containers/registries.conf
 
 # container cache must me outside the container so no overlay on overlay
 VOLUME /var/lib/containers

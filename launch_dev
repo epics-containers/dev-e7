@@ -12,7 +12,7 @@ podman build -t dev_ws ${thisdir}/.devcontainer > /tmp/dev_ws.log
 echo "build complete."
 
 mounts="
--v/${pwd}:${pwd}
+-v/${pwd}/..:${pwd}/..
 -v=${HOME}:${HOME}
 -v=${HOME}/.ssh:/root/.ssh
 -v=${HOME}/.bash_history:/root/.bash_history
@@ -20,18 +20,20 @@ mounts="
 -v=.inputrc:/root/.inputrc
 -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/podman.sock
 -v=/tmp/.X11-unix/:/tmp/.X11-unix/
+-v=podman_cache:/var/lib/containers
 "
 
 # --security-opt=label=disable
+# 
 
 opts="
 -e DISPLAY
+--network=podman
 --cap-add=sys_admin,mknod
 --device=/dev/fuse
---network=podman
 --security-opt=label=type:container_runtime_t
 --annotation=run.oci.keep_original_groups=1
 --storage-opt=ignore_chown_errors=true
 "
 
-podman run ${opts} -w ${pwd} --rm ${mounts} -it dev_ws bash
+podman run ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_ws bash
