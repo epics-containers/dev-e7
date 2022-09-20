@@ -1,3 +1,18 @@
+# UPDATE
+
+I have switched to podman/docker outside only after experiencing performance
+issues with "inside". This makes for much simpler Dockerfile and much less 
+developer confusion! It means that all containers run in the host and share 
+the same cache - so you only need to manage one cache.
+
+To do docker/podman outside we simply:
+- install podman 4.2
+- set CONTAINER_HOST=unix:/var/run/docker.sock
+- start a user socket on the host with 'systemctl --user start podman.socket
+- map the socket:
+  - podman -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock ...
+
+# DEPRECATED
 # Containers inside and outside of Containers
 
 The provided devcontainer is intended to run in rootless podman.
