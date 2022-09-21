@@ -7,8 +7,8 @@ thisdir=$(realpath $(dirname ${BASH_SOURCE[0]}))
 pwd=$(pwd)
 cd $thisdir
 
-echo "building with logs in /tmp/dev_ws.log ..." 
-podman build -t dev_ws ${thisdir}/.devcontainer
+echo "building with logs in /tmp/launch_dev.log ..." 
+podman build -t dev_ws ${thisdir}/.devcontainer > /tmp/launch_dev.log
 echo "build complete."
 
 mounts="
@@ -27,6 +27,7 @@ mounts="
 
 opts="
 -e DISPLAY
+-e USER
 -e CONTAINER_HOST=unix:/var/run/docker.sock
 --network=podman
 --cap-add=sys_admin,mknod

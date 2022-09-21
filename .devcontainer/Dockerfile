@@ -28,8 +28,10 @@ RUN wget http://ftp.us.debian.org/debian/pool/main/libp/libpod/podman_4.2.0+ds1-
 # Point podman at the outside podman's user socket 
 # This requires:
 #   systemctl start podman.socket
-#   podman -v /run/user/$(id -u)/podman/podman.sock:/podman.sock ...
-# Works for docker clients too, as the socket inside is default docker one.
+#   podman run -it -e CONTAINER_HOST=unix:/var/run/docker.sock  \
+#         -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock  \
+#         --security-opt=label=type:container_runtime_t dev_ws:latest
+# Works for docker clients too, as the socket inside is the default docker one.
 ENV CONTAINER_HOST="unix:/var/run/docker.sock"
 
 # let docker clients find a docker-like cli if they need it
