@@ -10,12 +10,14 @@ but other python projects and other languages will also work.
 
 Use cases:
 
-- To provide a devcontainer that can manage more than one project in
+- Allows for personalized container environment / VSCode settings that 
+  don't contaminate the individual projects.  
+- Provides a devcontainer that can manage more than one project in
   a workspace (skeleton based projects or otherwise)
-- To provide a devcontainer wrapper for projects that do not have their own
+- Provides a devcontainer wrapper for projects that do not have their own
   devcontainer. Useful for collaboration projects where upstream is not
   adopting devcontainers or skeleton.
-- Provide VSCode settings at the level of the Workspace
+- Provides VSCode settings at the level of the Workspace
 
 # Features
 
