@@ -60,7 +60,7 @@ Merge conflicts will need to be resolved where you have changed files.
 ```bash
 cd <workspace repo folder>
 # first update
-git pull git@github.com:epics-containers/vscode-python3-workspace.git --allow-unrelated-histories
+git pull git@github.com:epics-containers/dev-u22-workspace.git --allow-unrelated-histories
 # subsequent updates
-git pull git@github.com:epics-containers/vscode-python3-workspace.git
+git pull git@github.com:epics-containers/dev-u22-workspace.git
 ```
