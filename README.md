@@ -1,26 +1,27 @@
-# vscode-python3-workspace
-VSCode workspace settings files for python projects including a 
-developer container.
+# dev-u22-workspace
 
+This template project implements a devcontainer for use as a workspace
+for multiple projects.
 
-# Purpose of this project
-
-Provides a vscode devcontainer environment for python projects. May be used
-with the python skeleton project here:
-https://github.com/DiamondLightSource/python3-pip-skeleton
+It also includes VSCode workspace settings files and a vscode devcontainer
+definition file. The default workspace settings will work well with python
+projects that use https://github.com/DiamondLightSource/python3-pip-skeleton,
+but other python projects and other languages will also work.
 
 Use cases:
 
-- To provide a devcontainer that can manage more than one python project in
+- To provide a devcontainer that can manage more than one project in
   a workspace (skeleton based projects or otherwise)
 - To provide a devcontainer wrapper for projects that do not have their own
   devcontainer. Useful for collaboration projects where upstream is not
   adopting devcontainers or skeleton.
+- Provide VSCode settings at the level of the Workspace
 
 # Features
-## Containers in Containers
-- For details go see [podman inside](docs/podmaninside.md)
 
+ ## Containers in Containers
+Docker and Podman CLI and API are supported inside the container. They all
+connect to the user podman instance running on the host.
 ## Global VirtualEnv
 - The virtualenv /venv is already in the path and pre-populated with the 
   skeleton dev dependencies. 
@@ -32,10 +33,10 @@ Use cases:
   your bash profile inside the container. Includes:
   - autocompletion for git and bash
   - shared bash history with the host
-  - bash prompt with info including git branch
-  
-# How to adopt
+  - will also execute a personal run commands file if found at
+    - $HOME/.bashrc_dev
 
+# How to adopt
 - Take a copy of the template project 
   - go to https://github.com/epics-containers/vscode-python3-workspace
   - click "Use this template"

@@ -1,4 +1,4 @@
-# ~/.bashrc_dev: executed by bash(1) for non-login shells in vscode devcontainers
+# ~/.bashrc_dev: run commands for all shells in the devcontainer
 
 export LS_OPTIONS='--color=auto'
 eval "$(dircolors)"
@@ -20,12 +20,12 @@ export HISTFILESIZE=10000
 shopt -s histappend
 export PROMPT_COMMAND='history -a'
 
-# prompt
-function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
-}
-PS1="\[\e[32m\]\$(parse_git_branch)\[\e[m\][\[\e[34m\]\u@\h\[\e[m\] \W]\$ "
-if [[ -f /etc/centos-release ]] ; then
-    PS1="[C7] ${PS1}"
+# devcontainer HOME is /root but USER is passed in and /home/${USER} is mounted 
+rc=/home/${USER}/.bashrc_dev
+
+# execute the personal bash run commands script in user's home directory
+if [[ -f ${rc}/]] ; then
+  source ${rc}
 fi
-export PS1
+
+
