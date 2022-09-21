@@ -1,42 +1,8 @@
 {
     "folders": [
         {
-            "name": "dev-u22",
             "path": "."
         },
-        {
-            "name": "dls-pmac-control",
-            "path": "../dls-pmac-control"
-        },
-        {
-            "name": "k8s-epics-utils",
-            "path": "../k8s-epics-utils"
-        },
-        {
-            "name": "ibek",
-            "path": "../ibek"
-        },
-        {
-            "name": "bl45p",
-            "path": "../bl45p"
-        },
-        {
-            "name": "ioc-pmac",
-            "path": "../ioc-pmac"
-        },
-        {
-            "name": "epics-base",
-            "path": "../epics-base"
-        },
-        {
-            "path": "../dev-c7"
-        },
-        {
-            "path": "../pmac"
-        },
-        {
-            "path": "../python3-pip-skeleton"
-        }
     ],
     "settings": {
         "python.linting.pylintEnabled": false,
@@ -91,10 +57,8 @@
     },
     "extensions": {
         "recommendations": [
-            "ms-vscode.cpptools",
             "ms-vscode.cpptools-extension-pack",
             "ms-python.vscode-pylance",
-            "ms-python.python",
             "ryanluker.vscode-coverage-gutters"
         ]
     }
