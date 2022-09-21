@@ -20,11 +20,11 @@ export HISTFILESIZE=10000
 shopt -s histappend
 export PROMPT_COMMAND='history -a'
 
-# devcontainer HOME is /root but USER is passed in and /home/${USER} is mounted 
+# devcontainer HOME is /root but USER is passed in and /home/${USER} is mounted
 rc=/home/${USER}/.bashrc_dev
 
 # execute the personal bash run commands script in user's home directory
-if [[ -f ${rc}/]] ; then
+if [[ -f ${rc} ]] ; then
   source ${rc}
 fi
 
