@@ -1,7 +1,42 @@
 {
     "folders": [
         {
+            "name": "pmac-ws",
             "path": "."
+        },
+        {
+            "name": "dls-pmac-control",
+            "path": "../dls-pmac-control"
+        },
+        {
+            "name": "k8s-epics-utils",
+            "path": "../k8s-epics-utils"
+        },
+        {
+            "name": "ibek",
+            "path": "../ibek"
+        },
+        {
+            "name": "bl45p",
+            "path": "../bl45p"
+        },
+        {
+            "name": "ioc-pmac",
+            "path": "../ioc-pmac"
+        },
+        {
+            "name": "epics-base",
+            "path": "../epics-base"
+        },
+        {
+            "name": "asyn-R4-42",
+            "path": "../ioc-pmac/repos/epics/support/asyn-R4-42"
+        },
+        {
+            "path": "../dev-c7"
+        },
+        {
+            "path": "../pmac"
         }
     ],
     "settings": {
@@ -53,6 +88,13 @@
                 },
                 "problemMatcher": [],
             }
+        ]
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-python.vscode-pylance",
+            "ms-python.python",
+            "ryanluker.vscode-coverage-gutters"
         ]
     }
 }
