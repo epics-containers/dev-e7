@@ -1,7 +1,7 @@
 """
 Example docker API client.
 
-This is a demonstrator of the use of the docker API from inside the 
+This is a demonstrator of the use of the docker API from inside the
 devcontainer provided by dev-u22-workspace
 
 To try this, start the podman_service listening on docker API socket,
@@ -26,5 +26,5 @@ container = docker_client.containers.run(
     volumes={"/home": {"bind": "/home2", "mode": "rw"}},
     name="python_docker",
     command="sleep 10000",
-    environment={"PS1":"You are in a python created container! > "}
+    environment={"PS1": "You are in a python created container! > "},
 )
