@@ -69,7 +69,7 @@ git pull git@github.com:epics-containers/dev-u22-workspace.git
 
 ## open in default browser
 
-When reviewing your documentation build you will need to open and html file
+When reviewing your documentation build you will need to open an html file
 in a browser. Rather than installing a browser inside the devcontainer you 
 can use the [provided vscode plugin](https://marketplace.visualstudio.com/items?itemName=peakchen90.open-html-in-browser).
 
