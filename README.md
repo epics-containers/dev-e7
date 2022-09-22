@@ -40,7 +40,7 @@ connect to the user podman instance running on the host.
 
 # How to adopt
 - Take a copy of the template project
-  - go to https://github.com/epics-container/dev-u22-workspace
+  - go to https://github.com/epics-containers/dev-u22-workspace
   - click "Use this template"
   - choose a name and organization for your workspace project
 - Clone the new repo as a peer to the project or projects that it will manage
