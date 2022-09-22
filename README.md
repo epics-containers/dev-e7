@@ -64,3 +64,14 @@ git pull git@github.com:epics-containers/dev-u22-workspace.git --allow-unrelated
 # subsequent updates
 git pull git@github.com:epics-containers/dev-u22-workspace.git
 ```
+
+# Tips and Tricks
+
+## open in default browser
+
+When reviewing your documentation build you will need to open and html file
+in a browser. Rather than installing a browser inside the devcontainer you 
+can use the [provided vscode plugin](https://marketplace.visualstudio.com/items?itemName=peakchen90.open-html-in-browser).
+
+Simply right-click on the html file in the explorer and choose
+"Open in default browser"

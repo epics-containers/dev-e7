@@ -40,7 +40,8 @@
         "gruntfuggly.todo-tree",
         "redhat.vscode-yaml",
         "nsd.vscode-epics",
-        "alefragnani.bookmarks"
+        "alefragnani.bookmarks",
+        "peakchen90.open-html-in-browser"
     ],
     // expose a user socket for host podman API
     "initializeCommand": "systemctl --user start podman.socket",
