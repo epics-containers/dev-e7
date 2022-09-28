@@ -40,7 +40,7 @@ connect to the user podman instance running on the host.
 
 # How to adopt
 - Take a copy of the template project
-  - go to https://github.com/epics-containers/vscode-python3-workspace
+  - go to https://github.com/epics-containers/dev-u22-workspace
   - click "Use this template"
   - choose a name and organization for your workspace project
 - Clone the new repo as a peer to the project or projects that it will manage
@@ -69,7 +69,7 @@ git pull git@github.com:epics-containers/dev-u22-workspace.git
 
 ## open in default browser
 
-When reviewing your documentation build you will need to open and html file
+When reviewing your documentation build you will need to open an html file
 in a browser. Rather than installing a browser inside the devcontainer you 
 can use the [provided vscode plugin](https://marketplace.visualstudio.com/items?itemName=peakchen90.open-html-in-browser).
 
