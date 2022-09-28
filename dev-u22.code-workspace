@@ -2,30 +2,6 @@
     "folders": [
         {
             "path": "."
-        },
-        {
-            "path": "../dls-pmac-control"
-        },
-        {
-            "path": "../k8s-epics-utils"
-        },
-        {
-            "path": "../ibek"
-        },
-        {
-            "path": "../ioc-pmac"
-        },
-        {
-            "path": "../epics-modules"
-        },
-        {
-            "path": "../epics-base"
-        },
-        {
-            "path": "../ioc-pmac/repos/epics/support/asyn-R4-42"
-        },
-        {
-            "path": "../bl45p"
         }
     ],
     "settings": {
