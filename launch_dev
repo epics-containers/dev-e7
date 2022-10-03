@@ -11,11 +11,12 @@ echo "building with logs in /tmp/launch_dev.log ..."
 podman build -t dev_ws ${thisdir}/.devcontainer > /tmp/launch_dev.log
 echo "build complete."
 
+export MYHOME=/home/${USER}
 mounts="
 -v/${pwd}/..:${pwd}/..
--v=${HOME}:${HOME}
--v=${HOME}/.ssh:/root/.ssh
--v=${HOME}/.bash_history:/root/.bash_history
+-v=${MYHOME}:${MYHOME}
+-v=${MYHOME}/.ssh:/root/.ssh
+-v=${MYHOME}/.bash_history:/root/.bash_history
 -v=.bashrc_dev:/root/.bashrc
 -v=.inputrc:/root/.inputrc
 -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock
@@ -28,7 +29,9 @@ mounts="
 opts="
 -e DISPLAY
 -e USER
+-e KUBECONFIG
 -e CONTAINER_HOST=unix:/var/run/docker.sock
+-e SHELL
 --network=podman
 --cap-add=sys_admin,mknod
 --device=/dev/fuse
@@ -37,5 +40,11 @@ opts="
 --storage-opt=ignore_chown_errors=true
 "
 
+# these options are specific to DLS - everything else should be generic
+dls="
+-v /dls_sw/apps/kubernetes/pollux/:/dls_sw/apps/kubernetes/pollux/
+-v /dls_sw/apps/kubernetes/argus/:/dls_sw/apps/kubernetes/argus/
+"
+
 systemctl --user start podman.socket
-podman run ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_ws bash
+podman run ${dls} ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_ws bash
