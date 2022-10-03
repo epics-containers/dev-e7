@@ -26,8 +26,16 @@ Docker and Podman CLI and API are supported inside the container. They all
 connect to the user podman instance running on the host.
 
 ## Kubernetes CLI tools
-Inlcudes kubectl, helm and oidc-login. DLS users need to run ``module load
-pollux`` or similar to enable these features.
+Inlcudes kubectl, helm and oidc-login. Set environment ``KUBECONFIG`` to 
+point to your kubectl configuration file in order for these tools to 
+pick up cluster configuration.
+
+DLS users need to either:
+
+- run ``module load pollux`` before launching the devcontainer.
+- add this to $HOME//bashrc_dev  
+  - export KUBECONFIG=$HOME/.kube/config_pollux
+
 Uses the home directory .kube user folder for cluster configuration.
 
 ## Global VirtualEnv
