@@ -21,9 +21,15 @@ Use cases:
 
 # Features
 
- ## Containers in Containers
+## Containers in Containers
 Docker and Podman CLI and API are supported inside the container. They all
 connect to the user podman instance running on the host.
+
+## Kubernetes CLI tools
+Inlcudes kubectl, helm and oidc-login. DLS users need to run ``module load
+pollux`` or similar to enable these features.
+Uses the home directory .kube user folder for cluster configuration.
+
 ## Global VirtualEnv
 - The virtualenv /venv is already in the path and pre-populated with the
   skeleton dev dependencies.
