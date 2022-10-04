@@ -13,6 +13,9 @@ elif [[ -f /etc/bash_completion.d/git ]] ; then
   source /etc/bash_completion.d/git
 fi
 source <(podman completion bash)
+source <(ec --show-completion bash)
+source <(helm completion bash)
+source <(kubectl completion bash)
 
 # share history between all terminal instances
 export HISTIGNORE="&:l[sl]:[fb]g:exit"

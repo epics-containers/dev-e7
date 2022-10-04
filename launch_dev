@@ -32,7 +32,6 @@ opts="
 -e KUBECONFIG
 -e CONTAINER_HOST=unix:/var/run/docker.sock
 -e SHELL
---network=podman
 --cap-add=sys_admin,mknod
 --device=/dev/fuse
 --security-opt=label=type:container_runtime_t
