@@ -17,23 +17,20 @@ mounts="
 -v=${MYHOME}:${MYHOME}
 -v=${MYHOME}/.ssh:/root/.ssh
 -v=${MYHOME}/.bash_history:/root/.bash_history
--v=.bashrc_dev:/root/.bashrc
--v=.inputrc:/root/.inputrc
+-v=${thisdir}/.bashrc_dev:/root/.bashrc
+-v=${thisdir}/.inputrc:/root/.inputrc
 -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock
 -v=/tmp/.X11-unix/:/tmp/.X11-unix/
+-v=/usr/bin/docker:/usr/bin/docker
 "
 
 # --security-opt=label=disable
-# 
 
 opts="
 -e DISPLAY
 -e USER
 -e KUBECONFIG
--e CONTAINER_HOST=unix:/var/run/docker.sock
 -e SHELL
---cap-add=sys_admin,mknod
---device=/dev/fuse
 --security-opt=label=type:container_runtime_t
 --annotation=run.oci.keep_original_groups=1
 --storage-opt=ignore_chown_errors=true
