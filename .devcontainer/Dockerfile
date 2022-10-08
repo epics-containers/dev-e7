@@ -69,5 +69,5 @@ ENV VIRTUALENV=/venv
 RUN python3 -m venv ${VIRTUALENV}
 ENV PATH=${VIRTUALENV}/bin:$PATH
 
-# install developer packages, those used by skeleton are a reasonable first pass
-RUN pip install python3-pip-skeleton[dev]
+# install developer packages and tools
+RUN pip install python3-pip-skeleton[dev] epics-containers-cli ibek

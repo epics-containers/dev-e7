@@ -13,6 +13,13 @@ elif [[ -f /etc/bash_completion.d/git ]] ; then
   source /etc/bash_completion.d/git
 fi
 source <(podman completion bash)
+source <(ec --show-completion bash)
+source <(helm completion bash)
+source <(kubectl completion bash)
+# also do completion for 'k' aliased to 'kubectl'
+alias k=kubectl
+complete -F __start_kubectl k
+
 
 # share history between all terminal instances
 export HISTIGNORE="&:l[sl]:[fb]g:exit"
