@@ -19,6 +19,10 @@ Use cases:
   adopting devcontainers or skeleton.
 - Provides VSCode settings at the level of the Workspace
 
+# Prerequisites
+
+The host folder in this project provides information on setting up a 
+workstation to run this devcontainer. See [host](host/README.md)
 # Features
 
 ## Containers in Containers

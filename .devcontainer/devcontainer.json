@@ -33,7 +33,6 @@
     },
     // Add the IDs of extensions you want installed when the container is created.
     "extensions": [
-        "ms-python.python",
         "ms-python.vscode-pylance",
         "streetsidesoftware.code-spell-checker",
         "ryanluker.vscode-coverage-gutters",
@@ -45,11 +44,9 @@
         "alefragnani.bookmarks",
         "peakchen90.open-html-in-browser"
     ],
-    // expose a user socket for host podman API
-    "initializeCommand": "systemctl --user start podman.socket",
+    // run anything outside the container before startup
+    // "initializeCommand": "systemctl --user start podman.socket",
     "runArgs": [
-        "--cap-add=sys_admin,mknod",
-        "--device=/dev/fuse",
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
         "--storage-opt=ignore_chown_errors=true",

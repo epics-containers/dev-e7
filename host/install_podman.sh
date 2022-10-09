@@ -8,3 +8,6 @@ sudo apt install -y podman_*
 rm podman_*
 
 cp ${this_dir}/storage.conf $HOME/.config/containers 
+
+# publish a user socket for use as the remote podman from inside devcontainers
+systemctl --user enable podman.socket
