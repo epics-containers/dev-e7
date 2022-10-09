@@ -21,7 +21,6 @@ mounts="
 -v=${thisdir}/.inputrc:/root/.inputrc
 -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock
 -v=/tmp/.X11-unix/:/tmp/.X11-unix/
--v=/usr/bin/docker:/usr/bin/docker
 "
 
 # --security-opt=label=disable
