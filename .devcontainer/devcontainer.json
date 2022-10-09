@@ -48,16 +48,12 @@
     // "initializeCommand": "systemctl --user start podman.socket",
     "runArgs": [
         "--security-opt=label=type:container_runtime_t",
-        "--annotation=run.oci.keep_original_groups=1",
-        "--storage-opt=ignore_chown_errors=true",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
         "-v=${localEnv:HOME}/.bash_history:/root/.bash_history",
         "-v=${localWorkspaceFolder}/.bashrc_dev:/root/.bashrc",
         "-v=${localWorkspaceFolder}/.inputrc:/root/.inputrc",
         "-v=/tmp:/tmp",
-        "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock",
-        "-v=/dls_sw/apps/kubernetes/pollux/:/dls_sw/apps/kubernetes/pollux/",
-        "-v=/dls_sw/apps/kubernetes/argus/:/dls_sw/apps/kubernetes/argus/"
+        "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock"
     ],
     // can install peer python projects directly into venv
     // "postStartCommand": "pip install -e ../ophyd[dev]",
