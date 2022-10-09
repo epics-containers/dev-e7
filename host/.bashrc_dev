@@ -33,9 +33,7 @@ export K8S_GRAYLOG_URL=https://graylog2.diamond.ac.uk
 unset K8S_QUIET
 
 # enable autossh proxy - remove this if not required
-if pgrep autossh; then
-  echo "autossh is already running"
-else
+if not pgrep autossh; then
   echo "Starting autossh"
   nohup autossh -N -D9090 -o ServerAliveInterval=10 hgv27681@ssh.diamond.ac.uk > /tmp/autossh.log &
 fi
