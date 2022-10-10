@@ -30,7 +30,10 @@ export K8S_IMAGE_REGISTRY=ghcr.io/epics-containers
 # the URL for the facility graylog
 export K8S_GRAYLOG_URL=https://graylog2.diamond.ac.uk
 # set this to True to supress output of commands in 'ec' CLI
-unset K8S_QUIET
+unset K8S_QUIET# extra arguments to supply to containerised CLI commands
+export K8S_CLI_ARGS='
+-v=/scratch:/scratch
+'
 
 # enable autossh proxy - remove this if not required
 if pgrep autossh; then
