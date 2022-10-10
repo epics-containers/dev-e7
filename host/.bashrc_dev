@@ -28,7 +28,8 @@ export K8S_IMAGE_REGISTRY=ghcr.io/epics-containers
 # the URL for the facility graylog
 export K8S_GRAYLOG_URL=https://graylog2.diamond.ac.uk
 # set this to True to supress output of commands in 'ec' CLI
-unset K8S_QUIET# extra arguments to supply to containerised CLI commands
+unset K8S_QUIET
+# extra arguments to supply to containerised CLI commands
 export K8S_CLI_ARGS='
 -v=/scratch:/scratch
 '
@@ -38,5 +39,5 @@ export K8S_CLI_ARGS='
 # - OR CHANGE user@server to your own details
 if (! pgrep autossh) && which autossh 2>/dev/null; then
   echo "Starting autossh"
-  nohup autossh -N -D9090 -o ServerAliveInterval=10 auser@ssh.diamond.ac.uk > /tmp/autossh.log &
+  nohup autossh -N -D9090 -o ServerAliveInterval=10 your_user@ssh.diamond.ac.uk > /tmp/autossh.log &
 fi
