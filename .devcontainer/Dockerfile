@@ -68,7 +68,8 @@ RUN curl -L https://github.com/int128/kubelogin/releases/download/v1.25.3/kubelo
 
 ENV VIRTUALENV=/venv
 RUN python3 -m venv ${VIRTUALENV}
-ENV PATH=${VIRTUALENV}/bin:$PATH
+ENV PATH=${VIRTUALENV}/bin:/cli-tools/tools:$PATH
+ENV DEV_PROMPT=U22
 
 # install developer packages and tools
 RUN pip install python3-pip-skeleton[dev] epics-containers-cli ibek

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# launch the workspace developer container outside of vscode
+
+thisdir=$(realpath $(dirname ${BASH_SOURCE[0]}))
+
+pwd=$(pwd)
+cd $thisdir
+
+echo "building with logs in /tmp/launch_dev.log ..." 
+docker build -t dev_ws ${thisdir}/.devcontainer > /tmp/launch_dev.log
+echo "build complete."
+
+export MYHOME=/home/${USER}
+mounts="
+-v/${pwd}/..:${pwd}/..
+-v=${MYHOME}:${MYHOME}
+-v=${MYHOME}/.ssh:/root/.ssh
+-v=${MYHOME}/.bash_history:/root/.bash_history
+-v=${thisdir}/.bashrc_dev:/root/.bashrc
+-v=${thisdir}/.inputrc:/root/.inputrc
+-v=/var/run/docker.sock:/var/run/docker.sock
+-v=/tmp/.X11-unix/:/tmp/.X11-unix/
+-v/usr/bin/docker:/usr/bin/docker
+"
+
+opts="
+-e DISPLAY
+-e USER
+-e KUBECONFIG
+-e CONTAINER_HOST=unix:/var/run/docker.sock
+-e SHELL
+--security-opt label=disable
+"
+(
+set -x
+docker run ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_ws bash
+)

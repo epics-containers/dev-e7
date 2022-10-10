@@ -1,5 +1,3 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/python-3
 {
     "name": "Python 3",
     "build": {
@@ -33,7 +31,6 @@
     },
     // Add the IDs of extensions you want installed when the container is created.
     "extensions": [
-        "ms-python.python",
         "ms-python.vscode-pylance",
         "streetsidesoftware.code-spell-checker",
         "ryanluker.vscode-coverage-gutters",
@@ -45,18 +42,18 @@
         "alefragnani.bookmarks",
         "peakchen90.open-html-in-browser"
     ],
-    // expose a user socket for host podman API
-    "initializeCommand": "systemctl --user start podman.socket",
+    // run anything outside the container before startup
+    // "initializeCommand": "systemctl --user start podman.socket",
     "runArgs": [
-        "--cap-add=sys_admin,mknod",
-        "--device=/dev/fuse",
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
         "--storage-opt=ignore_chown_errors=true",
+        "--net=podman",
         "-v=${localEnv:HOME}/.ssh:/root/.ssh",
         "-v=${localEnv:HOME}/.bash_history:/root/.bash_history",
         "-v=${localWorkspaceFolder}/.bashrc_dev:/root/.bashrc",
         "-v=${localWorkspaceFolder}/.inputrc:/root/.inputrc",
+        "-v=${localWorkspaceFolder}/cli-tools:/cli-tools",
         "-v=/tmp:/tmp",
         "-v=${localEnv:XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock",
         "-v=/dls_sw/apps/kubernetes/pollux/:/dls_sw/apps/kubernetes/pollux/",

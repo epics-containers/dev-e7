@@ -1,0 +1,31 @@
+########################## EXAMPLE #############################################
+apiVersion: v1
+clusters:
+  - cluster:
+      certificate-authority: /home/giles/.kube/pollux_ca.crt
+      server: https://api.pollux.diamond.ac.uk:6443
+      proxy-url: socks5://localhost:9090
+    name: pollux
+contexts:
+  - context:
+      cluster: pollux
+      user: cluster-user
+      namespace: bl45p
+    name: cluster-user@pollux
+current-context: cluster-user@pollux
+kind: Config
+preferences: {}
+users:
+  - name: cluster-user
+    user:
+      exec:
+        apiVersion: client.authentication.k8s.io/v1beta1
+        command: kubectl
+        args:
+          - oidc-login
+          - get-token
+          - --oidc-issuer-url=https://pollux-keycloak.diamond.ac.uk/auth/realms/diamond
+          - --oidc-client-id=kubernetes
+          - --oidc-client-secret=REDACTED
+          - --grant-type=password
+          - --token-cache-dir=/home/giles/.kube/cache/pollux/oidc-login
