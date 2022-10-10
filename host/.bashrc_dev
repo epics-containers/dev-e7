@@ -35,5 +35,5 @@ unset K8S_QUIET
 # - OR CHANGE user@server to your own details
 if (! pgrep autossh) && which autossh 2>/dev/null; then
   echo "Starting autossh"
-  nohup autossh -N -D9090 -o ServerAliveInterval=10 hgv27681@ssh.diamond.ac.uk > /tmp/autossh.log &
+  nohup autossh -N -D9090 -o ServerAliveInterval=10 auser@ssh.diamond.ac.uk > /tmp/autossh.log &
 fi
