@@ -1,0 +1,3 @@
+[submodule "cli-tools"]
+	path = cli-tools
+	url = git@github.com:epics-containers/cli-tools.git

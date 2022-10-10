@@ -7,15 +7,13 @@
 # prompt: adds 'IOC' for generic IOC containers and 'dev-u22' for the workspace
 # container
 function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-if [[ -d /repos/epics/ioc ]]; then
-    PS1="\[\e[32m\]\$(parse_git_branch)\[\e[m\][\[\e[34m\]IOC\[\e[m\] \W]\$ "
-else
-    PS1="\[\e[32m\]\$(parse_git_branch)\[\e[m\][\[\e[34m\]dev-u22\[\e[m\] \W]\$ "
-fi
+PS1="\[\e[32m\]\$(parse_git_branch)\[\e[m\][\[\e[34m\]\[\e[m\]\W]\$ "
 if [[ -f /etc/centos-release ]] ; then
-    PS1="[C7] ${PS1}"
+    PS1="[\e[31m\]C7\e[m\]]${PS1}"
+else 
+    PS1="[\e[31m\]${DEV_PROMPT:-container}\e[m\]]${PS1}"
 fi
 export PS1
 
@@ -35,10 +33,10 @@ export K8S_CLI_ARGS='
 -v=/scratch:/scratch
 '
 
-# enable autossh proxy - remove this if not required
-if pgrep autossh; then
-  echo "autossh is already running"
-else
+# enable autossh proxy if it exists and is not already running
+# - REMOVE THIS if ssh proxy is not required.
+# - OR CHANGE user@server to your own details
+if (! pgrep autossh) && which autossh 2>/dev/null; then
   echo "Starting autossh"
-  nohup autossh -N -D9090 -o ServerAliveInterval=10 hgv27681@ssh.diamond.ac.uk > /tmp/autossh.log &
+  nohup autossh -N -D9090 -o ServerAliveInterval=10 auser@ssh.diamond.ac.uk > /tmp/autossh.log &
 fi
