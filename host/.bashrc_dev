@@ -4,6 +4,39 @@
 
 # personal .bashrc_dev for setting up environment in developer containers
 
+export LS_OPTIONS='--color=auto'
+eval "$(dircolors)" 2> /dev/null
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
+
+# setup completion
+if [[ -f /usr/share/bash-completion/completions/git ]] ; then
+    source /usr/share/bash-completion/completions/git
+fi
+if [[ -f /usr/share/bash-completion/completions/podman ]] ; then
+    source /usr/share/bash-completion/completions/podman
+fi
+if [[ -f /venv/bin/ec ]] ; then
+    source <(ec --show-completion bash)
+fi
+if [[ -f /bin/helm ]] ; then
+    source <(helm completion bash)
+fi
+if [[ -f /bin/kubectl ]] ; then
+    source <(kubectl completion bash)
+    # also do completion for 'k' aliased to 'kubectl'
+    alias k=kubectl
+    complete -F __start_kubectl k
+fi
+
+# share history between all terminal instances
+export HISTIGNORE="&:l[sl]:[fb]g:exit"
+export HISTFILESIZE=10000
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+
+
 # prompt: adds 'IOC' for generic IOC containers and 'dev-u22' for the workspace
 # container
 function parse_git_branch {
@@ -17,6 +50,8 @@ else
 fi
 export PS1
 
+
+############ REPLACE all environment below with your details ###################
 # point at your cluster config file
 export KUBECONFIG=/home/giles/.kube/config_pollux
 # the default beamline for ec commands
@@ -35,8 +70,8 @@ export K8S_CLI_ARGS='
 '
 
 # enable autossh proxy if it exists and is not already running
-# - REMOVE THIS if ssh proxy is not required.
-# - OR CHANGE user@server to your own details
+############ REMOVE THIS if ssh proxy is not required ##########################
+############ OR CHANGE user@server to your own details #########################
 if (! pgrep autossh) && which autossh 2>/dev/null; then
   echo "Starting autossh"
   nohup autossh -N -D9090 -o ServerAliveInterval=10 your_user@ssh.diamond.ac.uk > /tmp/autossh.log &
