@@ -44,9 +44,9 @@ function parse_git_branch {
 }
 PS1="\[\e[32m\]\$(parse_git_branch)\[\e[m\][\[\e[34m\]\[\e[m\]\W]\$ "
 if [[ -f /etc/centos-release ]] ; then
-    PS1="[\e[31m\]C7\e[m\]]${PS1}"
+    PS1="[\[\e[31m\]C7\[\e[m\]]${PS1}"
 else 
-    PS1="[\e[31m\]${DEV_PROMPT:-container}\e[m\]]${PS1}"
+    PS1="[\[\e[31m\]${DEV_PROMPT:-container}\[\e[m\]]${PS1}"
 fi
 export PS1
 
