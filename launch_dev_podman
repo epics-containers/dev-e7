@@ -42,5 +42,7 @@ dls="
 -v /dls_sw/apps/kubernetes/argus/:/dls_sw/apps/kubernetes/argus/
 "
 
+# add your own args by setting podarg environment
+
 systemctl --user start podman.socket
-podman run ${dls} ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_ws bash
+podman run ${podarg} ${dls} ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_ws bash

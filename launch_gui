@@ -1,0 +1,27 @@
+#!/bin/bash
+
+XSOCK=/tmp/.X11-unix
+XAUTH=/tmp/.docker.xauth
+xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+chmod 777 $XAUTH
+
+x11="
+-e DISPLAY 
+-v $XSOCK:$XSOCK 
+-v $XAUTH:$XAUTH 
+-e XAUTHORITY=$XAUTH 
+--net host"
+
+args="
+-it
+--security-opt=label=type:container_runtime_t
+-w $(pwd)
+"
+
+mounts="
+ -v $HOME:$HOME
+ -v /tmp:/tmp
+ -v $(pwd):$(pwd)
+"
+
+podman run ${mounts} ${args} ${x11} dev_ws
