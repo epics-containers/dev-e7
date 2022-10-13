@@ -13,7 +13,7 @@ echo "build complete."
 
 export MYHOME=/home/${USER}
 mounts="
--v/${pwd}/..:${pwd}/..
+-v=$(pwd):$(pwd)
 -v=${MYHOME}:${MYHOME}
 -v=${MYHOME}/.ssh:/root/.ssh
 -v=${MYHOME}/.bash_history:/root/.bash_history

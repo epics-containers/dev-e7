@@ -2,6 +2,7 @@
 
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
+touch $XAUTH
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 chmod 777 $XAUTH
 
@@ -10,7 +11,8 @@ x11="
 -v $XSOCK:$XSOCK 
 -v $XAUTH:$XAUTH 
 -e XAUTHORITY=$XAUTH 
---net host"
+--net host
+"
 
 args="
 -it
@@ -18,10 +20,16 @@ args="
 -w $(pwd)
 "
 
+export MYHOME=/home/${USER}
 mounts="
- -v $HOME:$HOME
- -v /tmp:/tmp
- -v $(pwd):$(pwd)
+-v=$(pwd):$(pwd)
+-v=${MYHOME}:${MYHOME}
+-v=${MYHOME}/.ssh:/root/.ssh
+-v=${MYHOME}/.bash_history:/root/.bash_history
+-v=${thisdir}/.bashrc_dev:/root/.bashrc
+-v=${thisdir}/.inputrc:/root/.inputrc
+-v=${thisdir}/cli-tools:/cli-tools
+-v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock
 "
 
 podman run ${mounts} ${args} ${x11} dev_ws
