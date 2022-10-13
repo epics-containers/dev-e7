@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# a launcher script for the X11 GUI even if you are already in an ssh session
+# https://stackoverflow.com/questions/48235040/run-x-application-in-a-docker-container-reliably-on-a-server-connected-via-ssh-w
+
+thisdir=$(realpath $(dirname ${BASH_SOURCE[0]}))
+
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
 touch $XAUTH
@@ -7,10 +12,10 @@ xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 chmod 777 $XAUTH
 
 x11="
--e DISPLAY 
--v $XSOCK:$XSOCK 
--v $XAUTH:$XAUTH 
--e XAUTHORITY=$XAUTH 
+-e DISPLAY
+-v $XSOCK:$XSOCK
+-v $XAUTH:$XAUTH
+-e XAUTHORITY=$XAUTH
 --net host
 "
 
