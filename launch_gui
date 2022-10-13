@@ -5,15 +5,15 @@
 
 thisdir=$(realpath $(dirname ${BASH_SOURCE[0]}))
 
-XSOCK=/tmp/.X11-unix
-XAUTH=/tmp/.docker.xauth
+XSOCK=/tmp/.X11-unix # X11 socket (but we mount the whole of tmp)
+XAUTH=/tmp/.container.xauth.$USER
 touch $XAUTH
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 chmod 777 $XAUTH
 
+
 x11="
 -e DISPLAY
--v $XSOCK:$XSOCK
 -v $XAUTH:$XAUTH
 -e XAUTHORITY=$XAUTH
 --net host
@@ -28,6 +28,7 @@ args="
 export MYHOME=/home/${USER}
 mounts="
 -v=$(pwd):$(pwd)
+-v=/tmp:/tmp
 -v=${MYHOME}:${MYHOME}
 -v=${MYHOME}/.ssh:/root/.ssh
 -v=${MYHOME}/.bash_history:/root/.bash_history
