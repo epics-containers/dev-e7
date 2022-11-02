@@ -4,8 +4,9 @@
 
 FROM ubuntu:22.04
 
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get update && apt-get upgrade -y && \
+    apt-get install -yq --no-install-recommends \
     apt-transport-https \
     autossh \
     build-essential \
