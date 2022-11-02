@@ -13,14 +13,15 @@ echo "build complete."
 
 export MYHOME=/home/${USER}
 mounts="
--v/${pwd}/..:${pwd}/..
+-v=$(pwd):$(pwd)
 -v=${MYHOME}:${MYHOME}
 -v=${MYHOME}/.ssh:/root/.ssh
 -v=${MYHOME}/.bash_history:/root/.bash_history
 -v=${thisdir}/.bashrc_dev:/root/.bashrc
 -v=${thisdir}/.inputrc:/root/.inputrc
+-v=${thisdir}/cli-tools:/cli-tools
 -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock
--v=/tmp/.X11-unix/:/tmp/.X11-unix/
+-v=/tmp:/tmp
 "
 
 # --security-opt=label=disable
@@ -41,5 +42,7 @@ dls="
 -v /dls_sw/apps/kubernetes/argus/:/dls_sw/apps/kubernetes/argus/
 "
 
+# add your own args by setting podarg environment
+
 systemctl --user start podman.socket
-podman run ${dls} ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_ws bash
+podman run ${podarg} ${dls} ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_ws bash
