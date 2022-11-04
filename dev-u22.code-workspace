@@ -3,49 +3,6 @@
         {
             "name": "u22",
             "path": "."
-        },
-        {
-            "name": "epics-containers-cli",
-            "path": "../epics-containers-cli"
-        },
-        {
-            "name": "k8s-epics-utils",
-            "path": "../k8s-epics-utils"
-        },
-        {
-            "name": "epics-base",
-            "path": "../epics-base"
-        },
-        {
-            "name": "bl45p",
-            "path": "../bl45p"
-        },
-        {
-            "name": "ibek",
-            "path": "../ibek"
-        },
-        {
-            "name": "ec-talk",
-            "path": "../ec-talk"
-        },
-        {
-            "name": "python3-pip-skeleton",
-            "path": "../python3-pip-skeleton"
-        },
-        {
-            "name": "python3-pip-skeleton-cli",
-            "path": "../python3-pip-skeleton-cli"
-        },
-        {
-            "name": "ioc-adaravis",
-            "path": "../ioc-adaravis"
-        },
-        {
-            "name": "ioc-pmac",
-            "path": "../ioc-pmac"
-        },
-        {
-            "path": "../pytools"
         }
     ],
     "settings": {
