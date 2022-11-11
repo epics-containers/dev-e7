@@ -43,7 +43,7 @@
         "peakchen90.open-html-in-browser"
     ],
     // run anything outside the container before startup
-    // "initializeCommand": "systemctl --user start podman.socket",
+    "initializeCommand": "systemctl --user start podman.socket",
     "runArgs": [
         "--security-opt=label=type:container_runtime_t",
         "--annotation=run.oci.keep_original_groups=1",
