@@ -3,6 +3,32 @@
         {
             "name": "u22",
             "path": "."
+        },
+        {
+            "name": "dev-c7",
+            "path": "../dev-c7"
+        },
+        {
+            "name": "bl45p",
+            "path": "../bl45p"
+        },
+        {
+            "name": "python3-pip-skeleton",
+            "path": "../python3-pip-skeleton"
+        },
+        {
+            "name": "python3-pip-skeleton-cli",
+            "path": "../python3-pip-skeleton-cli"
+        },
+        {
+            "name": "pmac",
+            "path": "../pmac"
+        },
+        {
+            "path": "../mciwb"
+        },
+        {
+            "path": "../ibek"
         }
     ],
     "settings": {
