@@ -1,5 +1,10 @@
 # ~/.bashrc_dev: run commands for all shells in the devcontainer
 
+# podman is only used as a client in the devcontainer unfortunately the
+# ubuntu 20.04 version (3.4.4) requires that you use -r to do this. From
+# 4.2.0 onwards this is not required when CONTAINER_HOST is set.
+alias podman="podman -r"
+
 # devcontainer HOME is /root but USER is passed in and /home/${USER} is mounted
 rc=/home/${USER}/.bashrc_dev
 
