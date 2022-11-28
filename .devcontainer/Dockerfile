@@ -14,9 +14,11 @@ RUN DEBIAN_FRONTEND=noninteractive \
     ca-certificates \
     curl \
     git \
+    gnupg \
     graphviz \
     net-tools \
     openssh-client \
+    podman \
     python3-dev \
     python3-pyqt5 \
     python3-venv \
@@ -26,18 +28,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 
 ########## add podman and docker "outside" #####################################
-
-# podman 4.2 has much better remote support than Ubuntu's apt repos version
-RUN wget http://ftp.us.debian.org/debian/pool/main/libp/libpod/podman_4.2.0+ds1-3_amd64.deb && \
-    apt install -y ./podman* && \
-    rm podman*
-
 # Point podman at the host ("outside") podman's user socket
 # This requires starting a user podman service plus some podman arguments i.e.:
-#   systemctl start podman.socket
-#   podman run -it -e CONTAINER_HOST=unix:/var/run/docker.sock  \
-#         -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock  \
-#         --security-opt=label=type:container_runtime_t dev_ws:latest
+#   systemctl start --user podman.socket
+#   podman run -it -e CONTAINER_HOST=unix:/var/run/docker.sock -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock --security-opt=label=type:container_runtime_t dev_ws:latest
 # Works for docker clients too, as the socket inside is the default docker one.
 ENV CONTAINER_HOST="unix:/var/run/docker.sock"
 
