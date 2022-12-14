@@ -76,6 +76,7 @@ ENV PATH=${VIRTUALENV}/bin:/cli-tools/tools:$PATH
 ENV DEV_PROMPT=U22
 
 # install developer packages and tools
+RUN pip install --upgrade pip
 RUN pip install python3-pip-skeleton[dev] epics-containers-cli ibek
 
 # create the cli-tools subcontainer launchers
