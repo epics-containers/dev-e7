@@ -1,3 +1,4 @@
+
 # This file is for use as a .vscode devcontainer
 # The devcontainer should run as root and use user-mode podman or
 # docker with user namespaces.
@@ -18,7 +19,6 @@ RUN DEBIAN_FRONTEND=noninteractive \
     graphviz \
     net-tools \
     openssh-client \
-    podman \
     python3-dev \
     python3-pyqt5 \
     python3-venv \
@@ -37,6 +37,15 @@ ENV CONTAINER_HOST="unix:/var/run/docker.sock"
 
 # let docker clients find a docker-like cli if they need it
 RUN ln -s /usr/bin/podman /usr/bin/docker
+
+# we install the debian podman for the client only. I am using the bookworm
+# version because it automatically uses remote when it sees CONTAINER_HOST in
+# the environment. (bookworm currently uses podman 4.3.1)
+# TODO: update below to remove test keys when bookworm releases
+RUN curl -fsSL https://download.opensuse.org/repositories/devel:kubic:libcontainers:unstable/Debian_Testing/Release.key   | gpg --dearmor   | tee /etc/apt/keyrings/devel_kubic_libcontainers_unstable.gpg > /dev/null && \
+    echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/devel_kubic_libcontainers_unstable.gpg]\
+    https://download.opensuse.org/repositories/devel:kubic:libcontainers:unstable/Debian_Testing/ /"   | tee /etc/apt/sources.list.d/devel:kubic:libcontainers:unstable.list > /dev/null && \
+    apt install --upgrade -y podman
 
 ########## add kubernetes cli tools ############################################
 
@@ -67,4 +76,9 @@ ENV PATH=${VIRTUALENV}/bin:/cli-tools/tools:$PATH
 ENV DEV_PROMPT=U22
 
 # install developer packages and tools
+RUN pip install --upgrade pip
 RUN pip install python3-pip-skeleton[dev] epics-containers-cli ibek
+
+# create the cli-tools subcontainer launchers
+RUN git clone https://github.com/epics-containers/cli-tools.git
+
