@@ -1,0 +1,103 @@
+
+# This file is for use as a .vscode devcontainer
+# The devcontainer should run as root and use user-mode podman or
+# docker with user namespaces.
+
+FROM ubuntu:22.04 as setup
+
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get update && apt-get upgrade -y && \
+    apt-get install -yq --no-install-recommends \
+    apt-transport-https \
+    autossh \
+    build-essential \
+    busybox \
+    ca-certificates \
+    curl \
+    git \
+    gnupg \
+    graphviz \
+    net-tools \
+    openssh-client \
+    python3-dev \
+    python3-pyqt5 \
+    python3-venv \
+    vim \
+    x11-apps \
+    && busybox --install
+
+
+########## add kubernetes cli tools ############################################
+
+# kubectl
+RUN curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list && \
+    apt-get update && \
+    apt-get install -y kubectl
+
+# helm
+RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null && \
+    apt-get install apt-transport-https --yes && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | tee /etc/apt/sources.list.d/helm-stable-debian.list && \
+    apt-get update && \
+    apt-get install helm
+
+# oidc-login
+RUN curl -L https://github.com/int128/kubelogin/releases/download/v1.25.3/kubelogin_linux_amd64.zip --output /tmp/kubelogin.zip && \
+    unzip /tmp/kubelogin.zip kubelogin && \
+    mv kubelogin /usr/local/bin/kubectl-oidc_login
+
+
+########## add python virtual environment ######################################
+
+ENV VIRTUALENV=/venv
+RUN python3 -m venv ${VIRTUALENV}
+ENV PATH=${VIRTUALENV}/bin:$PATH
+ENV DEV_PROMPT=U22
+
+# make sure we have the latest pip
+RUN pip install --upgrade pip
+
+
+######### Stage to add a recent podman client ##################################
+
+FROM setup as podman
+
+# Compile podman https://techviewleo.com/how-to-install-podman-on-ubuntu/
+# We install the podman for the client only. We require a recent
+# version because it automatically uses remote when it sees CONTAINER_HOST in
+# the environment. Also because we will need to keep within a few
+# of minor versions of the host podman for API compatibility
+
+RUN apt-get install -yq golang-go btrfs-progs \
+    libassuan-dev libbtrfs-dev libc6-dev libdevmapper-dev libglib2.0-dev \
+    libgpgme-dev libgpg-error-dev libprotobuf-dev libprotobuf-c-dev  \
+    libseccomp-dev libselinux1-dev libsystemd-dev
+
+RUN wget https://github.com/containers/podman/archive/refs/tags/v4.3.1.tar.gz && \
+    tar xvf v4.3.1.tar.gz && \
+    cd podman*/ && \
+    make BUILDTAGS="selinux seccomp" && \
+    make install PREFIX=/podman
+
+######### Stage to enable podman client inside the container ###################
+
+FROM setup as devcontainer
+
+# runtime dependencies of podman client
+RUN apt-get install -yq libgpgme11 libdevmapper1.02.1
+
+COPY --from=podman /podman /usr
+
+# Point podman at the host ("outside") podman's user socket
+# On the host this requires enabling a user podman service (once only):
+#   systemctl enable --user podman.socket
+#   systemctl start --user podman.socket
+# Plus some podman arguments when launching, i.e.:
+#   podman run -it -e CONTAINER_HOST=unix:/var/run/docker.sock -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-u22-workspace:latest
+# This works for docker clients too, as the socket inside is the docker default.
+ENV CONTAINER_HOST="unix:/var/run/docker.sock"
+
+# let docker clients find a docker-like cli if they need it
+RUN ln -s /usr/bin/podman /usr/bin/docker
+
