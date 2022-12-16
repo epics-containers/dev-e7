@@ -22,8 +22,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
     python3-dev \
     python3-pyqt5 \
     python3-venv \
+    software-properties-common \
     vim \
     x11-apps \
+    && add-apt-repository ppa:deadsnakes/ppa \
     && busybox --install
 
 
