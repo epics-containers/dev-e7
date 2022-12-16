@@ -22,8 +22,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
     python3-dev \
     python3-pyqt5 \
     python3-venv \
+    software-properties-common \
     vim \
     x11-apps \
+    && add-apt-repository ppa:deadsnakes/ppa \
     && busybox --install
 
 
@@ -64,10 +66,10 @@ RUN pip install --upgrade pip
 FROM setup as podman
 
 # Compile podman https://techviewleo.com/how-to-install-podman-on-ubuntu/
-# We install the podman for the client only. We require a recent
+# We install the podman to use its client CLI only. We require a recent
 # version because it automatically uses remote when it sees CONTAINER_HOST in
 # the environment. Also because we will need to keep within a few
-# of minor versions of the host podman for API compatibility
+# minor versions of the host podman for API compatibility
 
 RUN apt-get install -yq golang-go btrfs-progs \
     libassuan-dev libbtrfs-dev libc6-dev libdevmapper-dev libglib2.0-dev \
