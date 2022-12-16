@@ -57,30 +57,11 @@ Uses the home directory .kube user folder for cluster configuration.
     - $HOME/.bashrc_dev
 
 # How to adopt
-- Take a copy of the template project
-  - go to https://github.com/epics-containers/dev-u22-workspace
-  - click "Use this template"
-  - choose a name and organization for your workspace project
-- Clone the new repo as a peer to the project or projects that it will manage
-- cd into the project folder and launch vscode
-  - code dev-u22.code-workspace
-- Click "Reopen in a Container" when prompted
-- "File -> Add Folder to Workspace" for as many peer projects as you wish
-- choose ``Python: Select interpreter`` command (access via ctrl-shift-P)
-  choose ``select at workspace level`` and select /venv/bin/python.
+The best approach to adoption is using vscode devcontainers.
 
-# Adopting updates
+This repo gives details of how to do this:
 
-Changes you make can be committed back to your own repo. You can re-adopt
-updates to the original template with the following commands.
-Merge conflicts will need to be resolved where you have changed files.
-
-```bash
-cd <workspace repo folder>
-# first update
-git pull git@github.com:epics-containers/dev-u22-workspace.git --allow-unrelated-histories
-# subsequent updates
-git pull git@github.com:epics-containers/dev-u22-workspace.git
+https://github.com/epics-containers/.devcontainer
 ```
 
 # Tips and Tricks
