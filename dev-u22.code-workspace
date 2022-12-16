@@ -6,19 +6,7 @@
         }
     ],
     "settings": {
-        "python.linting.pylintEnabled": false,
-        "python.linting.flake8Enabled": true,
-        "python.linting.mypyEnabled": true,
-        "python.linting.enabled": true,
-        "python.testing.pytestArgs": [],
-        "python.testing.unittestEnabled": false,
-        "python.testing.pytestEnabled": true,
-        "python.formatting.provider": "black",
-        "python.languageServer": "Pylance",
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        }
+        "python.defaultInterpreterPath": "/venv/bin/python"
     },
     "launch": {
         "version": "0.2.0",
@@ -58,9 +46,14 @@
     },
     "extensions": {
         "recommendations": [
-            "ms-vscode.cpptools-extension-pack",
             "ms-python.vscode-pylance",
-            "ryanluker.vscode-coverage-gutters"
+            "ms-vscode.cpptools",
+            "ms-vscode.cpptools-extension-pack",
+            "ryanluker.vscode-coverage-gutters",
+            "mhutchie.git-graph",
+            "eamodio.gitlens",
+            "redhat.vscode-yaml",
+            "nsd.vscode-epics"
         ]
     }
 }
