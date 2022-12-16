@@ -50,16 +50,9 @@ RUN curl -L https://github.com/int128/kubelogin/releases/download/v1.25.3/kubelo
     mv kubelogin /usr/local/bin/kubectl-oidc_login
 
 
-########## add python virtual environment ######################################
+########## environment #########################################################
 
-ENV VIRTUALENV=/venv
-RUN python3 -m venv ${VIRTUALENV}
-ENV PATH=${VIRTUALENV}/bin:$PATH
 ENV DEV_PROMPT=U22
-
-# make sure we have the latest pip
-RUN pip install --upgrade pip
-
 
 ######### Stage to add a recent podman client ##################################
 
@@ -96,7 +89,7 @@ COPY --from=podman /podman /usr
 #   systemctl enable --user podman.socket
 #   systemctl start --user podman.socket
 # Plus some podman arguments when launching, i.e.:
-#   podman run -it -e CONTAINER_HOST=unix:/var/run/docker.sock -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-u22-workspace:latest
+#   podman run -it -e CONTAINER_HOST=unix:/var/run/docker.sock -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-u22:latest
 # This works for docker clients too, as the socket inside is the docker default.
 ENV CONTAINER_HOST="unix:/var/run/docker.sock"
 
