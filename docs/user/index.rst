@@ -49,9 +49,6 @@ side-bar.
             :caption: Reference
             :maxdepth: 1
 
-            reference/api
-            ../genindex
-
         +++
 
         Technical reference material including APIs and release notes.
