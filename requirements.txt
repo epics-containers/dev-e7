@@ -3,6 +3,7 @@ pydata-sphinx-theme>=0.12
 sphinx-rtd-theme-github-versions
 sphinx-copybutton
 sphinx-design
+sphinx-autobuild
 black
 mypy
 flake8

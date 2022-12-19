@@ -1,6 +1,8 @@
 Run the tests using pytest
 ==========================
 
+TODO we don't have tests yet - but when we do this page will probably be correct.
+
 Testing is done with pytest_. It will find functions in the project that `look
 like tests`_, and run them to check for errors. You can run it with::
 
