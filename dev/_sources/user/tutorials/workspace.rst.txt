@@ -1,10 +1,10 @@
 Creating a Devcontainer Workspace
----------------------------------
+=================================
 
 TODO tidy and flesh out.
 
 Create a workspace
-~~~~~~~~~~~~~~~~~~
+------------------
 
 Most likely you want to fork this repo to create your personal developer container.
 
@@ -27,8 +27,20 @@ Create your vscode workspace as follow:
 
 That's it you now have a devcontainer workspace.
 
+Install your python projects into the workspace
+-----------------------------------------------
+
+Once in you are inside the workspace container the following steps will
+add an editable install of your python project into the the global virtual
+environment /venv::
+
+    cd /workspace_root_folder
+    .devcontainer/pie *
+
+Note that non-python project folders will be skipped.
+
 Customization at container launch time
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 If you wish to install additional python packages or do any other setup
 at container creation time then make changes to the this file:
@@ -44,7 +56,7 @@ to make changes on a per workspace basis without dirtying your
 .devcontainer repo.
 
 Customization at container build time
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 When vscode launches the container it does a build using the this Dockerfile]
 
