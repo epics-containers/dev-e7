@@ -1,7 +1,7 @@
 dev-u22
 ===========================
 
-|code_ci| |docs_ci| |coverage| |license|
+|code_ci| |docs_ci| |license|
 
 A developer container based on Ubuntu 22.04 LTS.
 
@@ -9,19 +9,19 @@ This container provides a complete, portable and customizable development
 environment for EPICS and Python projects. Use this container to develop
 work on:
 
-- EPICS Containers Generic IOCs
-- EPICS Support Modules
+- EPICS Containers: Generic IOCs and Support Modules
 - Python Soft IOCs
 - Other Python Projects
 
 This project has two companion repositories:
 
-- [.devcontainer](https://github.com/epics-containers/.devcontainer)
+- `.devcontainer  <https://github.com/epics-containers/.devcontainer>`_
   makes it easy to set up a customizable VSCode workspace based upon this
   container.
-- [python3-pip-skeleton](https://diamondlightsource.github.io/python3-pip-skeleton-cli)
-  provides a skeleton for python projects that is recommended, but not required
-  for use within this container.
+
+- `python3-pip-skeleton <https://diamondlightsource.github.io/python3-pip-skeleton-cli>`_
+  provides a skeleton for python projects that is recommended,
+  but not required for use within this container.
 
 
 ============== ==============================================================
@@ -38,18 +38,6 @@ Releases       https://github.com/epics-containers/dev-u22/releases
 .. |docs_ci| image:: https://github.com/epics-containers/dev-u22/actions/workflows/docs.yml/badge.svg?branch=main
     :target: https://github.com/epics-containers/dev-u22/actions/workflows/docs.yml
     :alt: Docs CI
-
-.. |coverage| image:: https://codecov.io/gh/epics-containers/dev-u22/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/epics-containers/dev-u22
-    :alt: Test Coverage
-
-.. |pypi_version| image:: https://img.shields.io/pypi/v/dev-u22.svg
-    :target: https://pypi.org/project/dev-u22
-    :alt: Latest PyPI version
-
-.. |anaconda_version| image:: https://anaconda.org/epics-containers/dev-u22/badges/version.svg
-    :target: https://anaconda.org/epics-containers/dev-u22
-    :alt: Latest Anaconda version
 
 .. |license| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
     :target: https://opensource.org/licenses/Apache-2.0
