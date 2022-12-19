@@ -1,14 +1,14 @@
 Features of dev-u22
--------------------
+===================
 
 
 Containers in Containers
-~~~~~~~~~~~~~~~~~~~~~~~~
-Docker and Podman CLI and API are supported inside the container. They all
+------------------------
+Docker and Podman CLI and APIs are supported inside the container. They all
 connect to the user podman instance running on the host.
 
 Kubernetes CLI tools
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 Includes kubectl, helm and oidc-login. Set environment ``KUBECONFIG`` to
 point to your kubectl configuration file in order for these tools to
 pick up cluster configuration.
@@ -32,7 +32,7 @@ https://github.com/epics-containers/.devcontainer/blob/main/devcontainer.json
 Uses the home directory .kube user folder for cluster configuration.
 
 Global VirtualEnv
-~~~~~~~~~~~~~~~~~
+-----------------
 This is a feature of .devcontainer project see
 https://github.com/epics-containers/.devcontainer/blob/main/Dockerfile
 
@@ -42,7 +42,7 @@ https://github.com/epics-containers/.devcontainer/blob/main/Dockerfile
   inside have conflicting dependencies, but this should not usually be needed.
 
 .bashrc_dev
-~~~~~~~~~~~
+-----------
 This file is mounted as /root/.bashrc and provides a starting point for
 your bash profile inside the container. Includes:
 
