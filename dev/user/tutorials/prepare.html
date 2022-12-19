@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Build the docs using sphinx &#8212; dev-u22 5c98ae6
+    <title>Prepare your workstation &#8212; dev-u22 5c98ae6
  documentation</title>
   
   
@@ -45,7 +45,7 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/design-tabs.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'developer/how-to/build-docs';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user/tutorials/prepare';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://epics-containers.github.io/dev-u22/switcher.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '5c98ae6
@@ -54,8 +54,8 @@
     <link rel="shortcut icon" href="../../_static/dls-favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Run the tests using pytest" href="run-tests.html" />
-    <link rel="prev" title="Contributing to the project" href="contribute.html" />
+    <link rel="next" title="Creating a Devcontainer Workspace" href="workspace.html" />
+    <link rel="prev" title="User Guide" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -131,15 +131,15 @@
     </p>
     <ul id="navbar-main-elements" class="navbar-nav">
         
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../user/index.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
                         User Guide
                       </a>
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../index.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../developer/index.html">
                         Developer Guide
                       </a>
                     </li>
@@ -256,15 +256,15 @@
     </p>
     <ul id="navbar-main-elements" class="navbar-nav">
         
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../user/index.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
                         User Guide
                       </a>
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../index.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../developer/index.html">
                         Developer Guide
                       </a>
                     </li>
@@ -347,29 +347,19 @@
   </p>
   <div class="bd-toc-item navbar-nav">
     <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/dev-install.html">Developer install</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prepare your workstation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workspace.html">Creating a Devcontainer Workspace</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contributing to the project</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Build the docs using sphinx</a></li>
-<li class="toctree-l1"><a class="reference internal" href="run-tests.html">Run the tests using pytest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="static-analysis.html">Run static analysis using mypy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lint.html">Run linting using pre-commit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="update-tools.html">Update the tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make-release.html">Make a release</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../how-to/view-html.html">View generated HTML</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Explanations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../explanations/decisions.html">Architectural Decision Records</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../explanations/decisions/0001-record-architecture-decisions.html">1. Record architecture decisions</a></li>
-</ul>
-</li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../reference/standards.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of dev-u22</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/features.html">Features of dev-u22</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/docs-structure.html">About the documentation</a></li>
 </ul>
 
   </div>
@@ -401,41 +391,80 @@
             
             <article class="bd-article" role="main">
               
-  <section id="build-the-docs-using-sphinx">
-<h1>Build the docs using sphinx<a class="headerlink" href="#build-the-docs-using-sphinx" title="Permalink to this heading">#</a></h1>
-<p>You can build the <a class="reference external" href="https://www.sphinx-doc.org/">sphinx</a> based docs from the project directory by running:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e docs
+  <section id="prepare-your-workstation">
+<h1>Prepare your workstation<a class="headerlink" href="#prepare-your-workstation" title="Permalink to this heading">#</a></h1>
+<p>TODO: tidy and flesh out.</p>
+<p>The theory of devcontainers is that you don’t need to set up your development
+environment on your workstation. However, there are some things that you will
+need to do once only to get started.</p>
+<ul class="simple">
+<li><p>Install podman 4.2 or higher OR install a recent version of Docker</p></li>
+<li><p>Install vscode 1.73 or newer</p></li>
+<li><p>Optionally install autossh, a socks proxy to communicate with your
+kubernetes cluster if it is not directly accessible from your workstation
+(e.g. working from home)</p></li>
+<li><p>make sure you have a kubectl configuration set up in $HOME/.kube/config
+that points to your kubernetes cluster</p></li>
+</ul>
+<p>The following script can be used to launch a socks proxy once you
+have installed autossh:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="k">if</span> <span class="n">pgrep</span> <span class="n">autossh</span><span class="p">;</span> <span class="n">then</span>
+<span class="n">echo</span> <span class="s2">&quot;autossh is already running&quot;</span>
+<span class="k">else</span>
+<span class="n">echo</span> <span class="s2">&quot;Starting autossh&quot;</span>
+<span class="n">nohup</span> <span class="n">autossh</span> <span class="o">-</span><span class="n">N</span> <span class="o">-</span><span class="n">D9090</span> <span class="o">-</span><span class="n">o</span> <span class="n">ServerAliveInterval</span><span class="o">=</span><span class="mi">10</span> <span class="n">auser</span><span class="nd">@ssh</span><span class="o">.</span><span class="n">diamond</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">autossh</span><span class="o">.</span><span class="n">log</span> <span class="o">&amp;</span>
+<span class="n">fi</span>
 </pre></div>
 </div>
-<p>This will build the static docs on the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory, which includes API
-docs that pull in docstrings from the code.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><a class="reference internal" href="../reference/standards.html#documentation-standards"><span class="std std-ref">Documentation Standards</span></a></p>
-</div>
-<p>The docs will be built into the <code class="docutils literal notranslate"><span class="pre">build/html</span></code> directory, and can be opened
-locally with a web browse:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ firefox build/html/index.html
+<p>After installing podman make sure that the file
+${HOME}/.config/containers/storage.conf specifies the overlay storage driver:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">storage</span><span class="p">]</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="s2">&quot;overlay&quot;</span>
+<span class="p">[</span><span class="n">storage</span><span class="o">.</span><span class="n">options</span><span class="p">]</span>
+    <span class="n">mount_program</span> <span class="o">=</span> <span class="s2">&quot;/bin/fuse-overlayfs&quot;</span>
 </pre></div>
 </div>
-<section id="autobuild">
-<h2>Autobuild<a class="headerlink" href="#autobuild" title="Permalink to this heading">#</a></h2>
-<p>You can also run an autobuild process, which will watch your <code class="docutils literal notranslate"><span class="pre">docs</span></code>
-directory for changes and rebuild whenever it sees changes, reloading any
-browsers watching the pages:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e docs autobuild
+<p>DLS users that want to connect to our pollux cluster can create a
+.kube/config file that looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">########################## EXAMPLE #############################################</span>
+<span class="n">apiVersion</span><span class="p">:</span> <span class="n">v1</span>
+<span class="n">clusters</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">cluster</span><span class="p">:</span>
+    <span class="n">certificate</span><span class="o">-</span><span class="n">authority</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">USER</span><span class="o">/.</span><span class="n">kube</span><span class="o">/</span><span class="n">pollux_ca</span><span class="o">.</span><span class="n">crt</span>
+    <span class="n">server</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">pollux</span><span class="o">.</span><span class="n">diamond</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="p">:</span><span class="mi">6443</span>
+    <span class="n">proxy</span><span class="o">-</span><span class="n">url</span><span class="p">:</span> <span class="n">socks5</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">9090</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">pollux</span>
+<span class="n">contexts</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">context</span><span class="p">:</span>
+    <span class="n">cluster</span><span class="p">:</span> <span class="n">pollux</span>
+    <span class="n">user</span><span class="p">:</span> <span class="n">cluster</span><span class="o">-</span><span class="n">user</span>
+    <span class="n">namespace</span><span class="p">:</span> <span class="n">bl45p</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">cluster</span><span class="o">-</span><span class="n">user</span><span class="nd">@pollux</span>
+<span class="n">current</span><span class="o">-</span><span class="n">context</span><span class="p">:</span> <span class="n">cluster</span><span class="o">-</span><span class="n">user</span><span class="nd">@pollux</span>
+<span class="n">kind</span><span class="p">:</span> <span class="n">Config</span>
+<span class="n">preferences</span><span class="p">:</span> <span class="p">{}</span>
+<span class="n">users</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">cluster</span><span class="o">-</span><span class="n">user</span>
+    <span class="n">user</span><span class="p">:</span>
+    <span class="n">exec</span><span class="p">:</span>
+        <span class="n">apiVersion</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">authentication</span><span class="o">.</span><span class="n">k8s</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">v1beta1</span>
+        <span class="n">command</span><span class="p">:</span> <span class="n">kubectl</span>
+        <span class="n">args</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">oidc</span><span class="o">-</span><span class="n">login</span>
+        <span class="o">-</span> <span class="n">get</span><span class="o">-</span><span class="n">token</span>
+        <span class="o">-</span> <span class="o">--</span><span class="n">oidc</span><span class="o">-</span><span class="n">issuer</span><span class="o">-</span><span class="n">url</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pollux</span><span class="o">-</span><span class="n">keycloak</span><span class="o">.</span><span class="n">diamond</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">realms</span><span class="o">/</span><span class="n">diamond</span>
+        <span class="o">-</span> <span class="o">--</span><span class="n">oidc</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="nb">id</span><span class="o">=</span><span class="n">kubernetes</span>
+        <span class="o">-</span> <span class="o">--</span><span class="n">oidc</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">secret</span><span class="o">=</span><span class="n">REDACTED</span>
+        <span class="o">-</span> <span class="o">--</span><span class="n">grant</span><span class="o">-</span><span class="nb">type</span><span class="o">=</span><span class="n">password</span>
+        <span class="o">-</span> <span class="o">--</span><span class="n">token</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="nb">dir</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">giles</span><span class="o">/.</span><span class="n">kube</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">pollux</span><span class="o">/</span><span class="n">oidc</span><span class="o">-</span><span class="n">login</span>
 </pre></div>
 </div>
-<p>You can view the pages at localhost:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ firefox http://localhost:8000
-</pre></div>
-</div>
-<p>If you are making changes to source code too, you can tell it to watch
-changes in this directory too:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e docs autobuild -- --watch src
-</pre></div>
-</div>
-</section>
+<p>To make this work you would also need to copy from:</p>
+<p>/dls_sw/apps/kubernetes/pollux/ca.crt</p>
+<p>to:
+pollux_ca.crt</p>
+<p>(and replace ‘USER’ with your username above)</p>
 </section>
 
 
@@ -446,17 +475,17 @@ changes in this directory too:</p>
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="contribute.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Contributing to the project</p>
+          <p class="prev-next-title">User Guide</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="run-tests.html" title="next page">
+  <a class='right-next' id="next-link" href="workspace.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Run the tests using pytest</p>
+      <p class="prev-next-title">Creating a Devcontainer Workspace</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
@@ -471,23 +500,6 @@ changes in this directory too:</p>
               
 <div class="toc-item">
   
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#autobuild">
-   Autobuild
-  </a>
- </li>
-</ul>
-
-</nav>
-</div>
-
-<div class="toc-item">
-  
 <div id="searchbox"></div>
 </div>
 
@@ -496,7 +508,7 @@ changes in this directory too:</p>
 
 <div class="tocsection editthispage">
     <a href="https://github.com/epics-containers/dev-u22/edit/5c98ae6
-/docs/developer/how-to/build-docs.rst">
+/docs/user/tutorials/prepare.rst">
         <i class="fa-solid fa-pencil"></i> Edit this page
     </a>
 </div>
@@ -506,7 +518,7 @@ changes in this directory too:</p>
 <div class="toc-item">
   
 <div class="tocsection sourcelink">
-    <a href="../../_sources/developer/how-to/build-docs.rst.txt">
+    <a href="../../_sources/user/tutorials/prepare.rst.txt">
         <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
 </div>

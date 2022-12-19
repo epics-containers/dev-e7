@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Build the docs using sphinx &#8212; dev-u22 5c98ae6
+    <title>View generated HTML &#8212; dev-u22 5c98ae6
  documentation</title>
   
   
@@ -45,7 +45,7 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/design-tabs.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'developer/how-to/build-docs';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user/how-to/view-html';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://epics-containers.github.io/dev-u22/switcher.json';
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '5c98ae6
@@ -54,8 +54,8 @@
     <link rel="shortcut icon" href="../../_static/dls-favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Run the tests using pytest" href="run-tests.html" />
-    <link rel="prev" title="Contributing to the project" href="contribute.html" />
+    <link rel="next" title="Purpose of dev-u22" href="../explanations/purpose.html" />
+    <link rel="prev" title="Creating a Devcontainer Workspace" href="../tutorials/workspace.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -131,15 +131,15 @@
     </p>
     <ul id="navbar-main-elements" class="navbar-nav">
         
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../user/index.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
                         User Guide
                       </a>
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../index.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../developer/index.html">
                         Developer Guide
                       </a>
                     </li>
@@ -256,15 +256,15 @@
     </p>
     <ul id="navbar-main-elements" class="navbar-nav">
         
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../user/index.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
                         User Guide
                       </a>
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../index.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../developer/index.html">
                         Developer Guide
                       </a>
                     </li>
@@ -348,28 +348,18 @@
   <div class="bd-toc-item navbar-nav">
     <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/dev-install.html">Developer install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/prepare.html">Prepare your workstation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/workspace.html">Creating a Devcontainer Workspace</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contributing to the project</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Build the docs using sphinx</a></li>
-<li class="toctree-l1"><a class="reference internal" href="run-tests.html">Run the tests using pytest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="static-analysis.html">Run static analysis using mypy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lint.html">Run linting using pre-commit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="update-tools.html">Update the tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make-release.html">Make a release</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">View generated HTML</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Explanations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../explanations/decisions.html">Architectural Decision Records</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../explanations/decisions/0001-record-architecture-decisions.html">1. Record architecture decisions</a></li>
-</ul>
-</li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../reference/standards.html">Standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of dev-u22</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/features.html">Features of dev-u22</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/docs-structure.html">About the documentation</a></li>
 </ul>
 
   </div>
@@ -401,41 +391,15 @@
             
             <article class="bd-article" role="main">
               
-  <section id="build-the-docs-using-sphinx">
-<h1>Build the docs using sphinx<a class="headerlink" href="#build-the-docs-using-sphinx" title="Permalink to this heading">#</a></h1>
-<p>You can build the <a class="reference external" href="https://www.sphinx-doc.org/">sphinx</a> based docs from the project directory by running:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e docs
-</pre></div>
-</div>
-<p>This will build the static docs on the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory, which includes API
-docs that pull in docstrings from the code.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><a class="reference internal" href="../reference/standards.html#documentation-standards"><span class="std std-ref">Documentation Standards</span></a></p>
-</div>
-<p>The docs will be built into the <code class="docutils literal notranslate"><span class="pre">build/html</span></code> directory, and can be opened
-locally with a web browse:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ firefox build/html/index.html
-</pre></div>
-</div>
-<section id="autobuild">
-<h2>Autobuild<a class="headerlink" href="#autobuild" title="Permalink to this heading">#</a></h2>
-<p>You can also run an autobuild process, which will watch your <code class="docutils literal notranslate"><span class="pre">docs</span></code>
-directory for changes and rebuild whenever it sees changes, reloading any
-browsers watching the pages:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e docs autobuild
-</pre></div>
-</div>
-<p>You can view the pages at localhost:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ firefox http://localhost:8000
-</pre></div>
-</div>
-<p>If you are making changes to source code too, you can tell it to watch
-changes in this directory too:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -e docs autobuild -- --watch src
-</pre></div>
-</div>
-</section>
+  <section id="view-generated-html">
+<h1>View generated HTML<a class="headerlink" href="#view-generated-html" title="Permalink to this heading">#</a></h1>
+<p>We don’t have a browser installed in the devcontainer, so it can be less
+convenient to view the generated HTML.</p>
+<p>Rather than installing a browser inside the devcontainer you
+can use the
+[provided vscode plugin](<a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=peakchen90.open-html-in-browser">https://marketplace.visualstudio.com/items?itemName=peakchen90.open-html-in-browser</a>).</p>
+<p>Simply right-click on the html file in the explorer and choose
+“Open in default browser”</p>
 </section>
 
 
@@ -446,17 +410,17 @@ changes in this directory too:</p>
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="contribute.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="../tutorials/workspace.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Contributing to the project</p>
+          <p class="prev-next-title">Creating a Devcontainer Workspace</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="run-tests.html" title="next page">
+  <a class='right-next' id="next-link" href="../explanations/purpose.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Run the tests using pytest</p>
+      <p class="prev-next-title">Purpose of dev-u22</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
@@ -471,23 +435,6 @@ changes in this directory too:</p>
               
 <div class="toc-item">
   
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#autobuild">
-   Autobuild
-  </a>
- </li>
-</ul>
-
-</nav>
-</div>
-
-<div class="toc-item">
-  
 <div id="searchbox"></div>
 </div>
 
@@ -496,7 +443,7 @@ changes in this directory too:</p>
 
 <div class="tocsection editthispage">
     <a href="https://github.com/epics-containers/dev-u22/edit/5c98ae6
-/docs/developer/how-to/build-docs.rst">
+/docs/user/how-to/view-html.rst">
         <i class="fa-solid fa-pencil"></i> Edit this page
     </a>
 </div>
@@ -506,7 +453,7 @@ changes in this directory too:</p>
 <div class="toc-item">
   
 <div class="tocsection sourcelink">
-    <a href="../../_sources/developer/how-to/build-docs.rst.txt">
+    <a href="../../_sources/user/how-to/view-html.rst.txt">
         <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
 </div>
