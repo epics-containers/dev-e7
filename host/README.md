@@ -15,7 +15,6 @@ You will need:
 - preferably podman as the container manager (see below)
   - docker or WSL2 also will work
 - kube config file for connecting to your cluster
-- a .bashrc_dev file in your home directory to configure dev-u22 containers
 
 Optional additions:
 
@@ -37,15 +36,11 @@ first:
 Note that the script does:
     systemctl --user enable podman.socket
 
-Which runs a user mode podman exposing a socket for use from inside 
+Which runs a user mode podman exposing a socket for use from inside
 devcontainers
 
 TODO: how to install on other systems
 
-## .bashrc_dev
-
-Copy the .bashrc_dev from this folder to your home directory and edit
-to match your configuration
 
 ## kube configuration
 
@@ -56,15 +51,15 @@ will need to get the equivalent from your cluster admin.
 
 At the top of the example kube configuration is ``proxy-url`` this allows
 you to use a socks proxy into your organization's network, assuming you have
-an external ssh login capability. 
+an external ssh login capability.
 
 You will require a local autossh forwarder running locally for this to work
 The script ``socks.sh`` will set this up for you.
 
-## VPN 
+## VPN
 
 As an alternative to using socks you can use a VPN.
 
-If you have a VPN to your organization network then you can enable that 
+If you have a VPN to your organization network then you can enable that
 and remove ``proxy-url`` from .kube config.
 

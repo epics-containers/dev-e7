@@ -96,3 +96,13 @@ ENV CONTAINER_HOST="unix:/var/run/docker.sock"
 # let docker clients find a docker-like cli if they need it
 RUN ln -s /usr/bin/podman /usr/bin/docker
 
+######### Add in EPICS 7 tools #################################################
+
+ENV EPICS_ROOT=/repos/epics
+ENV EPICS_BASE=${EPICS_ROOT}/epics-base
+ENV EPICS_HOST_ARCH=linux-x86_64
+ENV PATH=${EPICS_BASE}/bin/${EPICS_HOST_ARCH}:${PATH}
+
+COPY --from=ghcr.io/epics-containers/epics-base-linux-runtime:main ${EPICS_BASE} ${EPICS_ROOT}
+
+
