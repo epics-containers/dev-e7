@@ -1,8 +1,5 @@
-Developer install
-=================
-
-These instructions will take you through the minimal steps required to get a dev
-environment setup, so you can run the tests locally.
+Local Build and Test
+====================
 
 Clone the repository
 --------------------
@@ -10,51 +7,28 @@ Clone the repository
 First clone the repository locally using `Git
 <https://git-scm.com/downloads>`_::
 
-    $ git clone git://github.com/epics-containers/dev-u22.git
+    git clone git://github.com/epics-containers/dev-u22.git
 
-Install dependencies
---------------------
+Build the container
+-------------------
+The following command will build the container locally::
 
-You can choose to either develop on the host machine using a `venv` (which
-requires python 3.8 or later) or to run in a container under `VSCode
-<https://code.visualstudio.com/>`_
+    podman build -t dev_u22 docker
 
-.. tab-set::
+If you have docker instead of podman just change the podman to docker.
 
-    .. tab-item:: Local virtualenv
+This builds the container using the Dockerfile in the docker directory and
+creates an image named dev_u22.
 
-        .. code::
+Run the container
+-----------------
 
-            $ cd dev-u22
-            $ python3 -m venv venv
-            $ source venv/bin/activate
-            $ pip install -e .[dev]
+There is a launch script to launch the container (tagged with dev_u22) outside
+of VSCode. This allows you to test the container without using the
+VSCode devcontainers::
 
-    .. tab-item:: VSCode devcontainer
+    ./launch_dev_podman
 
-        .. code::
+or if you have docker instead of podman::
 
-            $ vscode dev-u22
-            # Click on 'Reopen in Container' when prompted
-            # Open a new terminal
-
-See what was installed
-----------------------
-
-To see a graph of the python package dependency tree type::
-
-    $ pipdeptree
-
-Build and test
---------------
-
-Now you have a development environment you can run the tests in a terminal::
-
-    $ tox -p
-
-This will run in parallel the following checks:
-
-- `../how-to/build-docs`
-- `../how-to/run-tests`
-- `../how-to/static-analysis`
-- `../how-to/lint`
+    ./launch_dev_docker

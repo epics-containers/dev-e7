@@ -38,4 +38,4 @@ mounts="
 -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock
 "
 
-podman run ${mounts} ${args} ${x11} dev_ws
+podman run ${mounts} ${args} ${x11} dev-u22

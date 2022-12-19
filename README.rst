@@ -5,22 +5,24 @@ dev-u22
 
 A developer container based on Ubuntu 22.04 LTS.
 
-This container provides a development environment for working on:
+This container provides a complete, portable and customizable development
+environment for EPICS and Python projects. Use this container to develop
+work on:
 
 - EPICS Containers Generic IOCs
 - EPICS Support Modules
 - Python Soft IOCs
 - Other Python Projects
 
-This container works well with VSCode and the the developer-customizable
-devcontainer project.
+This project has two companion repositories:
 
-See https://github.com/epics-containers/.devcontainer
+- [.devcontainer](https://github.com/epics-containers/.devcontainer)
+  makes it easy to set up a customizable VSCode workspace based upon this
+  container.
+- [python3-pip-skeleton](https://diamondlightsource.github.io/python3-pip-skeleton-cli)
+  provides a skeleton for python projects that is recommended, but not required
+  for use within this container.
 
-This container also works well with python projects based on
-python3-pip-skeleton, but other python projects should work as well.
-
-See https://diamondlightsource.github.io/python3-pip-skeleton-cli
 
 ============== ==============================================================
 Source code    https://github.com/epics-containers/dev-u22

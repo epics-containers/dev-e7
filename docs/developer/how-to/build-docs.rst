@@ -3,14 +3,10 @@ Build the docs using sphinx
 
 You can build the `sphinx`_ based docs from the project directory by running::
 
-    $ tox -e docs
+    $ docs/make_docs.sh
 
-This will build the static docs on the ``docs`` directory, which includes API
-docs that pull in docstrings from the code.
+This will build the static docs on the ``docs`` directory.
 
-.. seealso::
-
-    `documentation_standards`
 
 The docs will be built into the ``build/html`` directory, and can be opened
 locally with a web browse::
@@ -24,7 +20,7 @@ You can also run an autobuild process, which will watch your ``docs``
 directory for changes and rebuild whenever it sees changes, reloading any
 browsers watching the pages::
 
-    $ tox -e docs autobuild
+    $ sphinx-autobuild -T docs build/html
 
 You can view the pages at localhost::
 
