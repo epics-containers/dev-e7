@@ -13,7 +13,8 @@ side-bar.
             :caption: Tutorials
             :maxdepth: 1
 
-            tutorials/installation
+            tutorials/prepare
+            tutorials/workspace
 
         +++
 
@@ -25,7 +26,7 @@ side-bar.
             :caption: How-to Guides
             :maxdepth: 1
 
-            how-to/run-container
+            how-to/view-html
 
         +++
 
@@ -37,6 +38,8 @@ side-bar.
             :caption: Explanations
             :maxdepth: 1
 
+            explanations/purpose
+            explanations/features
             explanations/docs-structure
 
         +++
