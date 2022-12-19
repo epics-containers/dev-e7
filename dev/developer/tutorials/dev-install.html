@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Developer install &#8212; dev-u22 5c98ae6
+    <title>Local Build and Test &#8212; dev-u22 63b0d0e
  documentation</title>
   
   
@@ -48,7 +48,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'developer/tutorials/dev-install';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://epics-containers.github.io/dev-u22/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '5c98ae6
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '63b0d0e
 ';
         </script>
     <link rel="shortcut icon" href="../../_static/dls-favicon.ico"/>
@@ -205,7 +205,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        5c98ae6
+        63b0d0e
   <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
@@ -325,7 +325,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        5c98ae6
+        63b0d0e
   <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
@@ -348,16 +348,13 @@
   <div class="bd-toc-item navbar-nav">
     <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Developer install</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Local Build and Test</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../how-to/contribute.html">Contributing to the project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-to/build-docs.html">Build the docs using sphinx</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-to/run-tests.html">Run the tests using pytest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../how-to/static-analysis.html">Run static analysis using mypy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../how-to/lint.html">Run linting using pre-commit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../how-to/update-tools.html">Update the tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-to/make-release.html">Make a release</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Explanations</span></p>
@@ -401,63 +398,37 @@
             
             <article class="bd-article" role="main">
               
-  <section id="developer-install">
-<h1>Developer install<a class="headerlink" href="#developer-install" title="Permalink to this heading">#</a></h1>
-<p>These instructions will take you through the minimal steps required to get a dev
-environment setup, so you can run the tests locally.</p>
+  <section id="local-build-and-test">
+<h1>Local Build and Test<a class="headerlink" href="#local-build-and-test" title="Permalink to this heading">#</a></h1>
 <section id="clone-the-repository">
 <h2>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this heading">#</a></h2>
 <p>First clone the repository locally using <a class="reference external" href="https://git-scm.com/downloads">Git</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone git://github.com/epics-containers/dev-u22.git
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">epics</span><span class="o">-</span><span class="n">containers</span><span class="o">/</span><span class="n">dev</span><span class="o">-</span><span class="n">u22</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 </section>
-<section id="install-dependencies">
-<h2>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this heading">#</a></h2>
-<p>You can choose to either develop on the host machine using a <a class="reference external" href="https://docs.python.org/3/library/venv.html#module-venv" title="(in Python v3.11)"><code class="xref any docutils literal notranslate"><span class="pre">venv</span></code></a> (which
-requires python 3.8 or later) or to run in a container under <a class="reference external" href="https://code.visualstudio.com/">VSCode</a></p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-0">
-Local virtualenv</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd dev-u22
-$ python3 -m venv venv
-$ source venv/bin/activate
-$ pip install -e .[dev]
+<section id="build-the-container">
+<h2>Build the container<a class="headerlink" href="#build-the-container" title="Permalink to this heading">#</a></h2>
+<p>The following command will build the container locally:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">podman</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">dev_u22</span> <span class="n">docker</span>
 </pre></div>
 </div>
-</div>
-<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-1">
-VSCode devcontainer</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vscode dev-u22
-# Click on &#39;Reopen in Container&#39; when prompted
-# Open a new terminal
-</pre></div>
-</div>
-</div>
-</div>
+<p>If you have docker instead of podman just change the podman to docker.</p>
+<p>This builds the container using the Dockerfile in the docker directory and
+creates an image named dev_u22.</p>
 </section>
-<section id="see-what-was-installed">
-<h2>See what was installed<a class="headerlink" href="#see-what-was-installed" title="Permalink to this heading">#</a></h2>
-<p>To see a graph of the python package dependency tree type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pipdeptree
+<section id="run-the-container">
+<h2>Run the container<a class="headerlink" href="#run-the-container" title="Permalink to this heading">#</a></h2>
+<p>There is a launch script to launch the container (tagged with dev_u22) outside
+of VSCode. This allows you to test the container without using the
+VSCode devcontainers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">launch_dev_podman</span>
 </pre></div>
 </div>
-</section>
-<section id="build-and-test">
-<h2>Build and test<a class="headerlink" href="#build-and-test" title="Permalink to this heading">#</a></h2>
-<p>Now you have a development environment you can run the tests in a terminal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tox -p
+<p>or if you have docker instead of podman:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">launch_dev_docker</span>
 </pre></div>
 </div>
-<p>This will run in parallel the following checks:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../how-to/build-docs.html"><span class="doc">Build the docs using sphinx</span></a></p></li>
-<li><p><a class="reference internal" href="../how-to/run-tests.html"><span class="doc">Run the tests using pytest</span></a></p></li>
-<li><p><a class="reference internal" href="../how-to/static-analysis.html"><span class="doc">Run static analysis using mypy</span></a></p></li>
-<li><p><a class="reference internal" href="../how-to/lint.html"><span class="doc">Run linting using pre-commit</span></a></p></li>
-</ul>
 </section>
 </section>
 
@@ -505,18 +476,13 @@ VSCode devcontainer</label><div class="sd-tab-content docutils">
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#install-dependencies">
-   Install dependencies
+  <a class="reference internal nav-link" href="#build-the-container">
+   Build the container
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#see-what-was-installed">
-   See what was installed
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#build-and-test">
-   Build and test
+  <a class="reference internal nav-link" href="#run-the-container">
+   Run the container
   </a>
  </li>
 </ul>
@@ -533,7 +499,7 @@ VSCode devcontainer</label><div class="sd-tab-content docutils">
   
 
 <div class="tocsection editthispage">
-    <a href="https://github.com/epics-containers/dev-u22/edit/5c98ae6
+    <a href="https://github.com/epics-containers/dev-u22/edit/63b0d0e
 /docs/developer/tutorials/dev-install.rst">
         <i class="fa-solid fa-pencil"></i> Edit this page
     </a>
