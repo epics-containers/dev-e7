@@ -42,8 +42,14 @@ dls="
 -v /dls_sw/apps/kubernetes/pollux/:/dls_sw/apps/kubernetes/pollux/
 -v /dls_sw/apps/kubernetes/argus/:/dls_sw/apps/kubernetes/argus/
 "
+# instead of the above mounts you could copy the cluster root certs locally:
+#   cp /dls_sw/apps/kubernetes/pollux/ca.crt ${HOME}/.kube/pollux.crt
+#   sed -i s=/dls_sw/apps/kubernetes/pollux/ca.crt=pollux.crt= ${HOME}/.kube/config_pollux
+#   cp /dls_sw/apps/kubernetes/argus/ca.crt ${HOME}/.kube/argus.crt
+#   sed -i s=/dls_sw/apps/kubernetes/argus/ca.crt=argus.crt= ${HOME}/.kube/config_argus
 
-# add your own args by setting podarg environment
+
+# add your own args by setting podarg environment variable
 
 systemctl --user start podman.socket
 podman run ${podarg} ${dls} ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_ws bash

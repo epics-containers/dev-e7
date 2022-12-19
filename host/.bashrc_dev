@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#################### EXAMPLE ################################################### 
+#################### EXAMPLE ###################################################
 
 # personal .bashrc_dev for setting up environment in developer containers
 
@@ -42,18 +42,14 @@ export PROMPT_COMMAND='history -a'
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-PS1="\[\e[32m\]\$(parse_git_branch)\[\e[m\][\[\e[34m\]\[\e[m\]\W]\$ "
-if [[ -f /etc/centos-release ]] ; then
-    PS1="[\[\e[31m\]C7\[\e[m\]]${PS1}"
-else 
-    PS1="[\[\e[31m\]${DEV_PROMPT:-container}\[\e[m\]]${PS1}"
-fi
-export PS1
 
+# make a useful prompt, including current container name
+PS1="\[\e[32m\]\$(parse_git_branch)\[\e[m\][\[\e[34m\]\[\e[m\]\W]\$ "ex
+export PS1="[\[\e[31m\]${DEV_PROMPT:-container}\[\e[m\]]${PS1}"
 
 ############ REPLACE all environment below with your details ###################
 # point at your cluster config file
-export KUBECONFIG=/home/giles/.kube/config_pollux
+export KUBECONFIG=/home/${USER}/.kube/config_pollux
 # the default beamline for ec commands
 export K8S_BEAMLINE=bl45p
 # where to get HELM charts for ec commands
@@ -74,5 +70,5 @@ export K8S_CLI_ARGS='
 ############ OR CHANGE user@server to your own details #########################
 if (! pgrep autossh) && which autossh 2>/dev/null; then
   echo "Starting autossh"
-  nohup autossh -N -D9090 -o ServerAliveInterval=10 your_user@ssh.diamond.ac.uk > /tmp/autossh.log &
+  nohup autossh -N -D9090 -o ServerAliveInterval=10 ${USER}@ssh.diamond.ac.uk > /tmp/autossh.log &
 fi
