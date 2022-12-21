@@ -105,4 +105,7 @@ ENV PATH=${EPICS_BASE}/bin/${EPICS_HOST_ARCH}:${PATH}
 
 COPY --from=ghcr.io/epics-containers/epics-base-linux-runtime:main ${EPICS_BASE} ${EPICS_ROOT}
 
+######### Misc Tools ###########################################################
 
+# add pie (python install editable) script in the path
+COPY pie /usr/local/bin/pie
