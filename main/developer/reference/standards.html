@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Standards &#8212; dev-u22 ce4bf88
+    <title>Standards &#8212; dev-u22 698a63b
  documentation</title>
   
   
@@ -48,7 +48,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'developer/reference/standards';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://epics-containers.github.io/dev-u22/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'ce4bf88
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '698a63b
 ';
         </script>
     <link rel="shortcut icon" href="../../_static/dls-favicon.ico"/>
@@ -204,7 +204,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        ce4bf88
+        698a63b
   <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
@@ -324,7 +324,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        ce4bf88
+        698a63b
   <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
@@ -399,7 +399,50 @@
               
   <section id="standards">
 <h1>Standards<a class="headerlink" href="#standards" title="Permalink to this heading">#</a></h1>
+<section id="coding-standards">
+<h2>Coding Standards<a class="headerlink" href="#coding-standards" title="Permalink to this heading">#</a></h2>
+<p>This repo contains no code other than the Dockerfile to define the
+developer container.</p>
 <p>TODO: do we need some Dockerfile standards?</p>
+</section>
+<section id="documentation-standards">
+<h2>Documentation Standards<a class="headerlink" href="#documentation-standards" title="Permalink to this heading">#</a></h2>
+<p>Docstrings are pre-processed using the Sphinx Napoleon extension. As such,
+<a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/index.html#google-vs-numpy">google-style</a> is considered as standard for this repository. Please use type
+hints in the function signature for types. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">arg1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Summary line.</span>
+
+<span class="sd">    Extended description of function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        arg1: Description of arg1</span>
+<span class="sd">        arg2: Description of arg2</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Description of return value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>Documentation is contained in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory and extracted from
+docstrings of the API.</p>
+<p>Docs follow the underlining convention:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Headling</span> <span class="mi">1</span> <span class="p">(</span><span class="n">page</span> <span class="n">title</span><span class="p">)</span>
+<span class="o">=======================</span>
+
+<span class="n">Heading</span> <span class="mi">2</span>
+<span class="o">---------</span>
+
+<span class="n">Heading</span> <span class="mi">3</span>
+<span class="o">~~~~~~~~~</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>How-to guide <a class="reference internal" href="../how-to/build-docs.html"><span class="doc">Build the docs using sphinx</span></a></p>
+</div>
+</section>
 </section>
 
 
@@ -428,6 +471,28 @@
               
 <div class="toc-item">
   
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coding-standards">
+   Coding Standards
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documentation-standards">
+   Documentation Standards
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
 <div id="searchbox"></div>
 </div>
 
@@ -435,7 +500,7 @@
   
 
 <div class="tocsection editthispage">
-    <a href="https://github.com/epics-containers/dev-u22/edit/ce4bf88
+    <a href="https://github.com/epics-containers/dev-u22/edit/698a63b
 /docs/developer/reference/standards.rst">
         <i class="fa-solid fa-pencil"></i> Edit this page
     </a>

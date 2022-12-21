@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Creating a Devcontainer Workspace &#8212; dev-u22 ce4bf88
+    <title>Creating a Devcontainer Workspace &#8212; dev-u22 698a63b
  documentation</title>
   
   
@@ -48,13 +48,13 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user/tutorials/workspace';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://epics-containers.github.io/dev-u22/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'ce4bf88
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '698a63b
 ';
         </script>
     <link rel="shortcut icon" href="../../_static/dls-favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="View generated HTML" href="../how-to/view-html.html" />
+    <link rel="next" title="Personalizing the Devcontainer" href="customize.html" />
     <link rel="prev" title="Prepare your workstation" href="prepare.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -205,7 +205,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        ce4bf88
+        698a63b
   <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
@@ -325,7 +325,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        ce4bf88
+        698a63b
   <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
@@ -348,8 +348,10 @@
   <div class="bd-toc-item navbar-nav">
     <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="purpose.html">Why to use dev-u22</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prepare.html">Prepare your workstation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Creating a Devcontainer Workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customize.html">Personalizing the Devcontainer</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
 <ul class="nav bd-sidenav">
@@ -357,7 +359,6 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Explanations</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../explanations/purpose.html">Purpose of dev-u22</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../explanations/features.html">Features of dev-u22</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../explanations/docs-structure.html">About the documentation</a></li>
 </ul>
@@ -403,20 +404,28 @@
 <li><p>cd root_folder_for_your_new_workspace</p></li>
 <li><p>git clone <a class="github reference external" href="https://github.com/epics-containers/.devcontainer">epics-containers/.devcontainer</a></p></li>
 <li><p>code .devcontainer</p></li>
-<li><p>open a terminal in vscode</p></li>
-<li><p>cd ..</p></li>
-<li><p>clone <a class="github reference external" href="https://github.com/your_org/your_first_repo_for_this_workspace">your_org/your_first_repo_for_this_workspace</a></p></li>
-<li><p>ctrl-shift-P add folder to Workspace …</p></li>
-<li><p>choose the above repo folder</p></li>
 <li><p>File-&gt;Save Workspace As …</p></li>
 <li><p>choose a filename for your workspace. IMPORTANT - save this in root_folder_for_your_new_workspace
 - the default folder will be .devcontainer and you don’t want that.</p></li>
 <li><p>ctrl-shift-P Reopen in Container</p></li>
 </ul>
+<p>At this point you have a workspace containing a single folder called .devcontainer.
+This workspace is open in vscode and vscode is using the developer container
+defined in .devcontainer. This devcontainer uses dev-u22 has the base container
+plus customizations in .devcontainer/Dockerfile. You are free to customize
+the developer container by editing files in .devcontainer.</p>
+<p>Now add some projects to work on in this workspace as follows:</p>
+<ul class="simple">
+<li><p>open a terminal in vscode</p></li>
+<li><p>cd ..</p></li>
+<li><p>clone <a class="github reference external" href="https://github.com/your_org/your_first_repo_for_this_workspace">your_org/your_first_repo_for_this_workspace</a></p></li>
+<li><p>ctrl-shift-P add folder to Workspace …</p></li>
+<li><p>choose the above repo folder</p></li>
+</ul>
 <p>That’s it you now have a devcontainer workspace.</p>
 </section>
-<section id="install-your-python-projects-into-the-workspace">
-<h2>Install your python projects into the workspace<a class="headerlink" href="#install-your-python-projects-into-the-workspace" title="Permalink to this heading">#</a></h2>
+<section id="install-your-python-projects-into-the-global-virtual-environment">
+<h2>Install your python projects into the global virtual environment<a class="headerlink" href="#install-your-python-projects-into-the-global-virtual-environment" title="Permalink to this heading">#</a></h2>
 <p>Once in you are inside the workspace container the following steps will
 add an editable install of your python project into the the global virtual
 environment /venv:</p>
@@ -425,24 +434,6 @@ environment /venv:</p>
 </pre></div>
 </div>
 <p>Note that non-python project folders will be skipped.</p>
-</section>
-<section id="customization-at-container-launch-time">
-<h2>Customization at container launch time<a class="headerlink" href="#customization-at-container-launch-time" title="Permalink to this heading">#</a></h2>
-<p>If you wish to install additional python packages or do any other setup
-at container creation time then make changes to the this file:</p>
-<p>.devcontainer/postCreateCommand.sh</p>
-<p>Changes in this file will get executed at the start of each new
-container instance but do not require rebuilding the container image.</p>
-<p>Note that this file is in .gitignore because you may have multiple
-workspaces with different python projects. You can use this file
-to make changes on a per workspace basis without dirtying your
-.devcontainer repo.</p>
-</section>
-<section id="customization-at-container-build-time">
-<h2>Customization at container build time<a class="headerlink" href="#customization-at-container-build-time" title="Permalink to this heading">#</a></h2>
-<p>When vscode launches the container it does a build using the this Dockerfile]</p>
-<p>.devcontainer/Dockerfile</p>
-<p>Add or remove installation steps as needed.</p>
 </section>
 </section>
 
@@ -461,10 +452,10 @@ to make changes on a per workspace basis without dirtying your
           <p class="prev-next-title">Prepare your workstation</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="../how-to/view-html.html" title="next page">
+  <a class='right-next' id="next-link" href="customize.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">View generated HTML</p>
+      <p class="prev-next-title">Personalizing the Devcontainer</p>
   </div>
   <i class="fa-solid fa-angle-right"></i>
   </a>
@@ -490,18 +481,8 @@ to make changes on a per workspace basis without dirtying your
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#install-your-python-projects-into-the-workspace">
-   Install your python projects into the workspace
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customization-at-container-launch-time">
-   Customization at container launch time
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customization-at-container-build-time">
-   Customization at container build time
+  <a class="reference internal nav-link" href="#install-your-python-projects-into-the-global-virtual-environment">
+   Install your python projects into the global virtual environment
   </a>
  </li>
 </ul>
@@ -518,7 +499,7 @@ to make changes on a per workspace basis without dirtying your
   
 
 <div class="tocsection editthispage">
-    <a href="https://github.com/epics-containers/dev-u22/edit/ce4bf88
+    <a href="https://github.com/epics-containers/dev-u22/edit/698a63b
 /docs/user/tutorials/workspace.rst">
         <i class="fa-solid fa-pencil"></i> Edit this page
     </a>
