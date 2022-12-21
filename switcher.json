@@ -4,6 +4,10 @@
     "url": "https://epics-containers.github.io/dev-u22/main/"
   },
   {
+    "version": "0.1.0",
+    "url": "https://epics-containers.github.io/dev-u22/0.1.0/"
+  },
+  {
     "version": "dev",
     "url": "https://epics-containers.github.io/dev-u22/dev/"
   }
