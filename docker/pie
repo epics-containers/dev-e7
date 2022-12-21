@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# pip install editable the folders passed to this script
+# e.g.
+#   cd .devcontainer
+#   ./pie ../*
+#
+# Will install editable mode all the folders in the current workspace
+# note that non-python projects will be ignored
+
+delete=false
+
+while getopts "dh" arg; do
+    case $arg in
+    d)  delete=true
+        ;;
+    *)
+    echo "
+Usage: [options] pie <folder> [<folder> ...]
+
+Installs each folder into the global virtual environment in editable mode.
+Skips folders that do not contain a setup.cfg or pyproject.toml file.
+
+Options:
+    -d  delete and re-create the virtual environment
+    -h  show this help
+"
+        exit 0
+        ;;
+    esac
+done
+
+if ${delete} ; then
+    echo "deleting virtual environment"
+    rm -fr /venv
+    echo "re-creating virtual environment"
+    python3 -m venv /venv
+    python3 -m pip install --upgrade pip
+fi
+
+pyprojects=""
+for folder in "$@"; do
+    if [ -d "${folder}" ]; then
+        if [[ -f "${folder}/setup.cfg" || -f "${folder}/pyproject.toml" ]]; then
+            pyprojects="${pyprojects} -e ${folder}[dev]"
+        fi
+    fi
+done
+
+
+if [[ -z "${pyprojects}" ]]; then
+    echo "no python projects to install"
+else
+    (
+        set -x
+        pip install --config-settings editable_mode=compat ${pyprojects}
+    )
+fi
