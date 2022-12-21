@@ -13,8 +13,10 @@ side-bar.
             :caption: Tutorials
             :maxdepth: 1
 
+            tutorials/purpose
             tutorials/prepare
             tutorials/workspace
+            tutorials/customize
 
         +++
 
@@ -38,7 +40,6 @@ side-bar.
             :caption: Explanations
             :maxdepth: 1
 
-            explanations/purpose
             explanations/features
             explanations/docs-structure
 

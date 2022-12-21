@@ -1,6 +1,10 @@
 Features of dev-u22
 ===================
 
+EPICS Base tools
+----------------
+This container includes the runtime tools from
+`epics-base <https://github.com/epics-containers/epics-base>`_.
 
 Containers in Containers
 ------------------------
