@@ -39,11 +39,10 @@ That's it you now have a devcontainer workspace.
 Install your python projects into the global virtual environment
 ----------------------------------------------------------------
 
-Once in you are inside the workspace container the following steps will
+Once in you are inside the workspace container the ``pie`` script will
 add an editable install of your python project into the the global virtual
 environment /venv::
 
-    cd /workspace_root_folder
-    .devcontainer/pie *
+    pie *
 
-Note that non-python project folders will be skipped.
+Note that non-python project folders will be skipped see ``pie -h`` for details.
