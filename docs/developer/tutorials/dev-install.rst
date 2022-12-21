@@ -15,7 +15,8 @@ The following command will build the container locally::
 
     podman build -t dev_u22 docker
 
-If you have docker instead of podman just change the podman to docker.
+If you have docker instead of podman just change podman to docker in the
+above command.
 
 This builds the container using the Dockerfile in the docker directory and
 creates an image named dev_u22.
