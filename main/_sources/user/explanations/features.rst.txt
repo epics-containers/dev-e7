@@ -1,4 +1,4 @@
-Features of dev-u22
+Features of dev-e7
 ===================
 
 EPICS Base tools
