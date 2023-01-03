@@ -14,13 +14,13 @@ The documentation is split into 2 sections:
         :link: user/index
         :link-type: doc
 
-        The User Guide contains documentation on how to install and use dev-u22.
+        The User Guide contains documentation on how to install and use dev-e7.
 
     .. grid-item-card:: :material-regular:`code;4em`
         :link: developer/index
         :link-type: doc
 
-        The Developer Guide contains documentation on how to develop and contribute changes back to dev-u22.
+        The Developer Guide contains documentation on how to develop and contribute changes back to dev-e7.
 
 .. toctree::
     :hidden:

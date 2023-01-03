@@ -2,7 +2,7 @@
 Example docker API client.
 
 This is a demonstrator of the use of the docker API from inside the
-devcontainer provided by dev-u22
+devcontainer provided by dev-e7
 
 To try this, start the podman_service listening on docker API socket,
 install python docker, run this script and then exec a shell in the

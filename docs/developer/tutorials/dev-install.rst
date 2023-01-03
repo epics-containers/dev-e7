@@ -7,7 +7,7 @@ Clone the repository
 First clone the repository locally using `Git
 <https://git-scm.com/downloads>`_::
 
-    git clone git://github.com/epics-containers/dev-u22.git
+    git clone git://github.com/epics-containers/dev-e7.git
 
 Build the container
 -------------------
