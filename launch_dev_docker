@@ -8,7 +8,7 @@ pwd=$(pwd)
 cd $thisdir
 
 echo "building with logs in /tmp/launch_dev.log ..."
-docker build -t dev_u22 ${thisdir}/.devcontainer > /tmp/launch_dev.log
+docker build -t dev-e7 ${thisdir}/.devcontainer > /tmp/launch_dev.log
 echo "build complete."
 
 export MYHOME=/home/${USER}
@@ -35,5 +35,5 @@ opts="
 "
 (
 set -x
-docker run ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev_u22 bash
+docker run ${opts} -w ${pwd} --rm ${mounts} -it "$@" dev-e7 bash
 )

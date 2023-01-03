@@ -52,7 +52,7 @@ RUN curl -L https://github.com/int128/kubelogin/releases/download/v1.25.3/kubelo
 
 ########## environment #########################################################
 
-ENV DEV_PROMPT=U22
+ENV DEV_PROMPT=E7
 
 ######### Stage to add a recent podman client ##################################
 
