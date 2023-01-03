@@ -1,7 +1,7 @@
-Why to use dev-u22
+Why to use dev-e7
 ------------------
 
-dev-u22 and .devcontainer together provide a portable, customizable
+dev-e7 and .devcontainer together provide a portable, customizable
 development environment for any project.
 
 Using a container for development means:
