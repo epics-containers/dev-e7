@@ -22,7 +22,7 @@ Create your vscode workspace as follow:
 
 At this point you have a workspace containing a single folder called .devcontainer.
 This workspace is open in vscode and vscode is using the developer container
-defined in .devcontainer. This devcontainer uses dev-u22 has the base container
+defined in .devcontainer. This devcontainer uses dev-e7 has the base container
 plus customizations in .devcontainer/Dockerfile. You are free to customize
 the developer container by editing files in .devcontainer.
 

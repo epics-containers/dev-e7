@@ -89,7 +89,7 @@ COPY --from=podman /podman /usr
 #   systemctl enable --user podman.socket
 #   systemctl start --user podman.socket
 # Plus some podman arguments when launching, i.e.:
-#   podman run -it -e CONTAINER_HOST=unix:/var/run/docker.sock -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-u22:latest
+#   podman run -it -e CONTAINER_HOST=unix:/var/run/docker.sock -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-e7:latest
 # This works for docker clients too, as the socket inside is the docker default.
 ENV CONTAINER_HOST="unix:/var/run/docker.sock"
 

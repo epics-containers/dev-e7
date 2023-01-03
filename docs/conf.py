@@ -13,7 +13,7 @@ import requests
 # -- General configuration ------------------------------------------------
 
 # General information about the project.
-project = "dev-u22"
+project = "dev-e7"
 
 # The full version, including alpha/beta/rc tags.
 try:

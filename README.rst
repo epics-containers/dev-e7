@@ -1,12 +1,12 @@
-dev-u22
+dev-e7
 ===========================
 
 |code_ci| |docs_ci| |license|
 
-A developer container based on Ubuntu 22.04 LTS.
+A developer container based on Ubuntu LTS.
 
 This container provides a complete, portable and customizable development
-environment for EPICS and Python projects. Use this container to develop
+environment for EPICS and Python projects. Use this container to
 work on:
 
 - EPICS Containers: Generic IOCs and Support Modules
@@ -25,18 +25,18 @@ This project has two companion repositories:
 
 
 ============== ==============================================================
-Source code    https://github.com/epics-containers/dev-u22
-Documentation  https://epics-containers.github.io/dev-u22
-Releases       https://github.com/epics-containers/dev-u22/releases
+Source code    https://github.com/epics-containers/dev-e7
+Documentation  https://epics-containers.github.io/dev-e7
+Releases       https://github.com/epics-containers/dev-e7/releases
 ============== ==============================================================
 
 
-.. |code_ci| image:: https://github.com/epics-containers/dev-u22/actions/workflows/code.yml/badge.svg?branch=main
-    :target: https://github.com/epics-containers/dev-u22/actions/workflows/code.yml
+.. |code_ci| image:: https://github.com/epics-containers/dev-e7/actions/workflows/code.yml/badge.svg?branch=main
+    :target: https://github.com/epics-containers/dev-e7/actions/workflows/code.yml
     :alt: Code CI
 
-.. |docs_ci| image:: https://github.com/epics-containers/dev-u22/actions/workflows/docs.yml/badge.svg?branch=main
-    :target: https://github.com/epics-containers/dev-u22/actions/workflows/docs.yml
+.. |docs_ci| image:: https://github.com/epics-containers/dev-e7/actions/workflows/docs.yml/badge.svg?branch=main
+    :target: https://github.com/epics-containers/dev-e7/actions/workflows/docs.yml
     :alt: Docs CI
 
 .. |license| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
@@ -47,4 +47,4 @@ Releases       https://github.com/epics-containers/dev-u22/releases
     Anything below this line is used when viewing README.rst and will be replaced
     when included in index.rst
 
-See https://epics-containers.github.io/dev-u22 for more detailed documentation.
+See https://epics-containers.github.io/dev-e7 for more detailed documentation.
