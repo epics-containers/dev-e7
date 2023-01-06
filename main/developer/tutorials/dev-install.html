@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Local Build and Test &#8212; dev-e7 0.1.1-2-g9e3abbb
+    <title>Local Build and Test &#8212; dev-e7 0.2-2-g15b2b46
  documentation</title>
   
   
@@ -407,17 +407,17 @@
 <section id="build-the-container">
 <h2>Build the container<a class="headerlink" href="#build-the-container" title="Permalink to this heading">#</a></h2>
 <p>The following command will build the container locally:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">podman</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">dev_u22</span> <span class="n">docker</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">podman</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">dev</span><span class="o">-</span><span class="n">e7</span> <span class="n">docker</span>
 </pre></div>
 </div>
 <p>If you have docker instead of podman just change podman to docker in the
 above command.</p>
 <p>This builds the container using the Dockerfile in the docker directory and
-creates an image named dev_u22.</p>
+creates an image named dev-e7.</p>
 </section>
 <section id="run-the-container">
 <h2>Run the container<a class="headerlink" href="#run-the-container" title="Permalink to this heading">#</a></h2>
-<p>There is a launch script to launch the container (tagged with dev_u22) outside
+<p>There is a launch script to launch the container (tagged with dev-e7) outside
 of VSCode. This allows you to test the container without using the
 VSCode devcontainers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">launch_dev_podman</span>
