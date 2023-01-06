@@ -13,18 +13,18 @@ Build the container
 -------------------
 The following command will build the container locally::
 
-    podman build -t dev_u22 docker
+    podman build -t dev-e7 docker
 
 If you have docker instead of podman just change podman to docker in the
 above command.
 
 This builds the container using the Dockerfile in the docker directory and
-creates an image named dev_u22.
+creates an image named dev-e7.
 
 Run the container
 -----------------
 
-There is a launch script to launch the container (tagged with dev_u22) outside
+There is a launch script to launch the container (tagged with dev-e7) outside
 of VSCode. This allows you to test the container without using the
 VSCode devcontainers::
 
