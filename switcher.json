@@ -18,9 +18,5 @@
   {
     "version": "dev",
     "url": "https://epics-containers.github.io/dev-e7/dev/"
-  },
-  {
-    "version": "gilesknap-patch-2",
-    "url": "https://epics-containers.github.io/dev-e7/gilesknap-patch-2/"
   }
 ]

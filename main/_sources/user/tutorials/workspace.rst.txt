@@ -6,9 +6,12 @@ TODO tidy and flesh out.
 Create a workspace
 ------------------
 
-Most likely you want to fork this repo to create your personal developer container.
+To create a workspace that uses this container you should start by cloning
+the .devcontainer repo. Most likely you want to fork .devcontainer
+to create your personal developer container that you can modify and keep 
+track of in your own github user space.
 
-These steps clone directly from this repo, but you get the idea!
+These steps clone directly from .devcontainer, but you get the idea!
 
 Create your vscode workspace as follow:
 
