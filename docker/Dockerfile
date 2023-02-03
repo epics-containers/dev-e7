@@ -22,6 +22,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     python3-dev \
     python3-pyqt5 \
     python3-venv \
+    rsync \
     software-properties-common \
     vim \
     x11-apps \
