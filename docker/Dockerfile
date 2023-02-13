@@ -102,8 +102,7 @@ ENV EPICS_ROOT=/repos/epics
 ENV EPICS_BASE=${EPICS_ROOT}/epics-base
 ENV EPICS_HOST_ARCH=linux-x86_64
 ENV PATH=${EPICS_BASE}/bin/${EPICS_HOST_ARCH}:${PATH}
-
-COPY --from=ghcr.io/epics-containers/epics-base-linux-runtime:main ${EPICS_BASE} ${EPICS_ROOT}
+COPY --from=ghcr.io/epics-containers/epics-base-linux-developer:23.2.1 ${EPICS_BASE} ${EPICS_ROOT}
 
 ######### Misc Tools ###########################################################
 
