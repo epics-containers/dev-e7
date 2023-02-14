@@ -22,6 +22,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     python3-dev \
     python3-pyqt5 \
     python3-venv \
+    rsync \
     software-properties-common \
     vim \
     x11-apps \
@@ -96,13 +97,14 @@ ENV CONTAINER_HOST="unix:/var/run/docker.sock"
 # let docker clients find a docker-like cli if they need it
 RUN ln -s /usr/bin/podman /usr/bin/docker
 
-######### Add in EPICS 7 tools #################################################
+######### Add in EPICS 7 tools and build environ ###############################
 
 ENV EPICS_ROOT=/repos/epics
 ENV EPICS_BASE=${EPICS_ROOT}/epics-base
 ENV EPICS_HOST_ARCH=linux-x86_64
 ENV PATH=${EPICS_BASE}/bin/${EPICS_HOST_ARCH}:${PATH}
-COPY --from=ghcr.io/epics-containers/epics-base-linux-developer:23.2.1 ${EPICS_BASE} ${EPICS_ROOT}
+
+COPY --from=ghcr.io/epics-containers/epics-base-linux-developer:23.2.1 ${EPICS_BASE} ${EPICS_BASE}
 
 ######### Misc Tools ###########################################################
 
