@@ -17,12 +17,9 @@ at container creation time then make changes to the this file:
 .devcontainer/postCreateCommand.sh
 
 Changes in this file will get executed at the start of each new
-container instance but do not require rebuilding the container image.
+container instance, you will need to rebuild the container for
+changes to take affect.
 
-Note that this file is in .gitignore because you may have multiple
-workspaces with different python projects. You can use this file
-to make changes on a per workspace basis without dirtying your
-.devcontainer repo.
 
 Customization at container build time
 -------------------------------------
