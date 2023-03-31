@@ -8,6 +8,7 @@ FROM ubuntu:22.04 as setup
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && apt-get upgrade -y && \
     apt-get install -yq --no-install-recommends \
+    apt-file \
     apt-transport-https \
     autossh \
     build-essential \
@@ -110,3 +111,6 @@ COPY --from=ghcr.io/epics-containers/epics-base-linux-developer:23.2.1 ${EPICS_B
 
 # add pie (python install editable) script in the path
 COPY pie /usr/local/bin/pie
+
+RUN git config --global pull.rebase false
+
