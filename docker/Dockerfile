@@ -8,6 +8,7 @@ FROM ubuntu:22.04 as setup
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && apt-get upgrade -y && \
     apt-get install -yq --no-install-recommends \
+    apt-file \
     apt-transport-https \
     autossh \
     build-essential \
