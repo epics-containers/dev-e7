@@ -43,9 +43,9 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
      ./get_helm.sh
 
 # oidc-login
-RUN curl -L "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubelogin_linux_${TARGETARCH}.zip" --output /tmp/kubelogin.zip && \
-    unzip /tmp/kubelogin.zip kubelogin && \
-    mv kubelogin /usr/local/bin/kubectl-oidc_login
+# RUN curl -L "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubelogin_linux_${TARGETARCH}.zip" --output /tmp/kubelogin.zip && \
+#     unzip /tmp/kubelogin.zip kubelogin && \
+#     mv kubelogin /usr/local/bin/kubectl-oidc_login
 
 
 ########## environment #########################################################
