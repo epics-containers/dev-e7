@@ -34,21 +34,16 @@ RUN DEBIAN_FRONTEND=noninteractive \
 ########## add kubernetes cli tools ############################################
 
 # kubectl
-
-
-
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${TARGETARCH}/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 # helm
-RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null && \
-    apt-get install apt-transport-https --yes && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | tee /etc/apt/sources.list.d/helm-stable-debian.list && \
-    apt-get update && \
-    apt-get install helm
+RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && \
+    chmod 700 get_helm.sh && \
+     ./get_helm.sh
 
 # oidc-login
-RUN curl -L https://github.com/int128/kubelogin/releases/download/v1.25.3/kubelogin_linux_amd64.zip --output /tmp/kubelogin.zip && \
+RUN curl -L https://github.com/int128/kubelogin/releases/download/v1.25.3/kubelogin_linux_${TARGETARCH}.zip --output /tmp/kubelogin.zip && \
     unzip /tmp/kubelogin.zip kubelogin && \
     mv kubelogin /usr/local/bin/kubectl-oidc_login
 
@@ -61,22 +56,17 @@ ENV DEV_PROMPT=E7
 
 FROM setup as podman
 
-# Compile podman https://techviewleo.com/how-to-install-podman-on-ubuntu/
 # We install the podman to use its client CLI only. We require a recent
 # version because it automatically uses remote when it sees CONTAINER_HOST in
 # the environment. Also because we will need to keep within a few
 # minor versions of the host podman for API compatibility
 
-RUN apt-get install -yq golang-go btrfs-progs \
-    libassuan-dev libbtrfs-dev libc6-dev libdevmapper-dev libglib2.0-dev \
-    libgpgme-dev libgpg-error-dev libprotobuf-dev libprotobuf-c-dev  \
-    libseccomp-dev libselinux1-dev libsystemd-dev
-
-RUN wget https://github.com/containers/podman/archive/refs/tags/v4.3.1.tar.gz && \
-    tar xvf v4.3.1.tar.gz && \
-    cd podman*/ && \
-    make BUILDTAGS="selinux seccomp" && \
-    make install PREFIX=/podman
+# NOTE:
+# see http://ftp.us.debian.org/debian/pool/main/libp/libpod/ for the latest
+# podman version and update PODMAN_DEB accoringly
+ENV PODMAN_DEB=podman_4.4.0+ds1-1_${TARGETARCH}.deb
+RUN curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb && \
+    dpkg -i /tmp/podman.deb
 
 ######### Stage to enable podman client inside the container ###################
 
