@@ -3,7 +3,7 @@
 # The devcontainer should run as root and use user-mode podman or
 # docker with user namespaces.
 
-FROM ubuntu:22.04 as setup
+FROM ubuntu:22.04
 
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && apt-get upgrade -y && \
@@ -50,51 +50,39 @@ RUN curl -L "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubel
     unzip /tmp/kubelogin.zip kubelogin && \
     mv kubelogin /usr/local/bin/kubectl-oidc_login
 
+########## docker client #######################################################
+
+# Here we install the docker CLI only with the intention of using it to connect
+# to the host's docker or podman daemon.
+
+# If you are running podman on the host, you can use the host's podman as follows:
+# Enable a user podman service (once only):
+#   systemctl enable --user podman.socket
+#   systemctl start --user podman.socket
+# Launch the devcontainer with the host's podman socket mounted:
+#   podman run -it -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-e7:latest
+#
+# If you are running docker on the host, you can use the host's docker as follows:
+#   docker run -it -v=/var/run/docker.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-e7:latest
+
+# install docker cli
+RUN install -m 0755 -d /etc/apt/keyrings && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+    chmod a+r /etc/apt/keyrings/docker.gpg && \
+    echo \
+      "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+      tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    apt-get update && \
+    apt-get install  -yq --no-install-recommends docker-ce-cli
+
+# let podman clients find a podman-like cli if they need it (e.g. ec)
+RUN ln -s /usr/bin/docker /usr/bin/podman
+
 ########## environment #########################################################
 
 ENV DEV_PROMPT=E7
 
-######### Stage to add a recent podman client ##################################
-
-FROM setup as podman
-
-# Compile podman https://techviewleo.com/how-to-install-podman-on-ubuntu/
-# We install the podman to use its client CLI only. We require a recent
-# version because it automatically uses remote when it sees CONTAINER_HOST in
-# the environment. Also because we will need to keep within a few
-# minor versions of the host podman for API compatibility
-
-RUN apt-get install -yq golang-go btrfs-progs \
-    libassuan-dev libbtrfs-dev libc6-dev libdevmapper-dev libglib2.0-dev \
-    libgpgme-dev libgpg-error-dev libprotobuf-dev libprotobuf-c-dev  \
-    libseccomp-dev libselinux1-dev libsystemd-dev
-
-RUN wget https://github.com/containers/podman/archive/refs/tags/v4.3.1.tar.gz && \
-    tar xvf v4.3.1.tar.gz && \
-    cd podman*/ && \
-    make BUILDTAGS="selinux seccomp" && \
-    make install PREFIX=/podman
-
-######### Stage to enable podman client inside the container ###################
-
-FROM setup as devcontainer
-
-# runtime dependencies of podman client
-RUN apt-get install -yq libgpgme11 libdevmapper1.02.1
-
-COPY --from=podman /podman /usr
-
-# Point podman at the host ("outside") podman's user socket
-# On the host this requires enabling a user podman service (once only):
-#   systemctl enable --user podman.socket
-#   systemctl start --user podman.socket
-# Plus some podman arguments when launching, i.e.:
-#   podman run -it -e CONTAINER_HOST=unix:/var/run/docker.sock -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-e7:latest
-# This works for docker clients too, as the socket inside is the docker default.
-ENV CONTAINER_HOST="unix:/var/run/docker.sock"
-
-# let docker clients find a docker-like cli if they need it
-RUN ln -s /usr/bin/podman /usr/bin/docker
 
 ######### Add in EPICS 7 tools and build environ ###############################
 
