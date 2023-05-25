@@ -60,18 +60,22 @@ ENV DEV_PROMPT=E7
 
 FROM setup as podman
 
+# Compile podman https://techviewleo.com/how-to-install-podman-on-ubuntu/
 # We install the podman to use its client CLI only. We require a recent
 # version because it automatically uses remote when it sees CONTAINER_HOST in
 # the environment. Also because we will need to keep within a few
 # minor versions of the host podman for API compatibility
 
-# NOTE:
-# see http://ftp.us.debian.org/debian/pool/main/libp/libpod/ for the latest
-# podman version and update PODMAN_DEB accoringly
-ENV PODMAN_DEB=podman_4.4.0+ds1-1_${TARGETARCH}.deb
-RUN echo "curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb" && \
-    curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output /tmp/podman.deb && \
-    dpkg -i /tmp/podman.deb
+RUN apt-get install -yq golang-go btrfs-progs \
+    libassuan-dev libbtrfs-dev libc6-dev libdevmapper-dev libglib2.0-dev \
+    libgpgme-dev libgpg-error-dev libprotobuf-dev libprotobuf-c-dev  \
+    libseccomp-dev libselinux1-dev libsystemd-dev
+
+RUN wget https://github.com/containers/podman/archive/refs/tags/v4.3.1.tar.gz && \
+    tar xvf v4.3.1.tar.gz && \
+    cd podman*/ && \
+    make BUILDTAGS="selinux seccomp" && \
+    make install PREFIX=/podman
 
 ######### Stage to enable podman client inside the container ###################
 
