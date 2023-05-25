@@ -30,5 +30,9 @@
   {
     "version": "gilesknap-patch-3",
     "url": "https://epics-containers.github.io/dev-e7/gilesknap-patch-3/"
+  },
+  {
+    "version": "split-arch",
+    "url": "https://epics-containers.github.io/dev-e7/split-arch/"
   }
 ]
