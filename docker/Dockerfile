@@ -30,14 +30,14 @@ RUN DEBIAN_FRONTEND=noninteractive \
     && add-apt-repository ppa:deadsnakes/ppa \
     && busybox --install
 
-ARG TARGETARCH
-ENV TARGETARCH=${TARGETARCH}
+ARG BUILDARCH
+ENV BUILDARCH=${BUILDARCH}
 
 ########## add kubernetes cli tools ############################################
 
 # kubectl
-RUN echo target architecture is ${TARGETARCH} && \
-    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${TARGETARCH}/kubectl" && \
+RUN echo target architecture is ${BUILDARCH} && \
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${BUILDARCH}/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 # helm
@@ -46,10 +46,10 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
      ./get_helm.sh
 
 # oidc-login
-# RUN curl -L "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubelogin_linux_${TARGETARCH}.zip" --output /tmp/kubelogin.zip && \
+# RUN curl -L "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubelogin_linux_${BUILDARCH}.zip" --output /tmp/kubelogin.zip && \
 #     unzip /tmp/kubelogin.zip kubelogin && \
 #     mv kubelogin /usr/local/bin/kubectl-oidc_login
-RUN echo "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubelogin_linux_${TARGETARCH}.zip"
+RUN echo "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubelogin_linux_${BUILDARCH}.zip"
 
 
 ########## environment #########################################################

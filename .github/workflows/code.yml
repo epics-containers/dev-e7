@@ -8,7 +8,12 @@ jobs:
   make-container:
     # only run pull requests from forks as internal PRs run as branch CI
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest", "macos-latest"]
+
+    runs-on: ${{ matrix.os }}
     permissions:
       contents: read
       packages: write
@@ -53,7 +58,6 @@ jobs:
       - name: Build runtime image
         uses: docker/build-push-action@v2
         with:
-          platforms: linux/amd64,linux/arm64
           context: docker
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
