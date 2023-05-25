@@ -30,11 +30,14 @@ RUN DEBIAN_FRONTEND=noninteractive \
     && add-apt-repository ppa:deadsnakes/ppa \
     && busybox --install
 
+ARG TARGETARCH
+ENV TARGETARCH=${TARGETARCH}
 
 ########## add kubernetes cli tools ############################################
 
 # kubectl
-RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${TARGETARCH}/kubectl" && \
+RUN echo target architecture is ${TARGETARCH} && \
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${TARGETARCH}/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 # helm
@@ -66,7 +69,7 @@ FROM setup as podman
 # see http://ftp.us.debian.org/debian/pool/main/libp/libpod/ for the latest
 # podman version and update PODMAN_DEB accoringly
 ENV PODMAN_DEB=podman_4.4.0+ds1-1_${TARGETARCH}.deb
-RUN run echo "curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb" && \
+RUN echo "curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb" && \
     curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb && \
     dpkg -i /tmp/podman.deb
 

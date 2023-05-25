@@ -2,13 +2,12 @@ name: Code CI
 
 on:
   push:
-    branches:
-      - main
-      - dev
   pull_request:
 
 jobs:
   make-container:
+    # only run pull requests from forks as internal PRs run as branch CI
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
     runs-on: ubuntu-latest
     permissions:
       contents: read
