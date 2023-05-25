@@ -70,7 +70,7 @@ FROM setup as podman
 # podman version and update PODMAN_DEB accoringly
 ENV PODMAN_DEB=podman_4.4.0+ds1-1_${TARGETARCH}.deb
 RUN echo "curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb" && \
-    curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb && \
+    curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output /tmp/podman.deb && \
     dpkg -i /tmp/podman.deb
 
 ######### Stage to enable podman client inside the container ###################
