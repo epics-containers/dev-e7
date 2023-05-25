@@ -46,6 +46,7 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
 # RUN curl -L "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubelogin_linux_${TARGETARCH}.zip" --output /tmp/kubelogin.zip && \
 #     unzip /tmp/kubelogin.zip kubelogin && \
 #     mv kubelogin /usr/local/bin/kubectl-oidc_login
+RUN echo "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubelogin_linux_${TARGETARCH}.zip"
 
 
 ########## environment #########################################################
@@ -65,7 +66,8 @@ FROM setup as podman
 # see http://ftp.us.debian.org/debian/pool/main/libp/libpod/ for the latest
 # podman version and update PODMAN_DEB accoringly
 ENV PODMAN_DEB=podman_4.4.0+ds1-1_${TARGETARCH}.deb
-RUN curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb && \
+RUN run echo "curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb" && \
+    curl -L  http://ftp.us.debian.org/debian/pool/main/libp/libpod/${PODMAN_DEB} --output podman.deb && \
     dpkg -i /tmp/podman.deb
 
 ######### Stage to enable podman client inside the container ###################
