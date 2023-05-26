@@ -5,6 +5,9 @@
 
 FROM ubuntu:22.04 as setup
 
+ARG TARGETARCH
+ENV TARGETARCH=amd64
+
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && apt-get upgrade -y && \
     apt-get install -yq --no-install-recommends \
