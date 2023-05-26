@@ -42,5 +42,9 @@
   {
     "version": "split-arch",
     "url": "https://epics-containers.github.io/dev-e7/split-arch/"
+  },
+  {
+    "version": "tidymain",
+    "url": "https://epics-containers.github.io/dev-e7/tidymain/"
   }
 ]
