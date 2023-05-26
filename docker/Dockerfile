@@ -50,35 +50,6 @@ RUN curl -L "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubel
     unzip /tmp/kubelogin.zip kubelogin && \
     mv kubelogin /usr/local/bin/kubectl-oidc_login
 
-########## docker client #######################################################
-
-# Here we install the docker CLI only with the intention of using it to connect
-# to the host's docker or podman daemon.
-
-# If you are running podman on the host, you can use the host's podman as follows:
-# Enable a user podman service (once only):
-#   systemctl enable --user podman.socket
-#   systemctl start --user podman.socket
-# Launch the devcontainer with the host's podman socket mounted:
-#   podman run -it -v=${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-e7:latest
-#
-# If you are running docker on the host, you can use the host's docker as follows:
-#   docker run -it -v=/var/run/docker.sock:/var/run/docker.sock --security-opt=label=disable ghcr.io/epics-containers/dev-e7:latest
-
-# install docker cli
-RUN install -m 0755 -d /etc/apt/keyrings && \
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
-    chmod a+r /etc/apt/keyrings/docker.gpg && \
-    echo \
-      "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-      "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-      tee /etc/apt/sources.list.d/docker.list > /dev/null && \
-    apt-get update && \
-    apt-get install  -yq --no-install-recommends docker-ce-cli
-
-# let podman clients find a podman-like cli if they need it (e.g. ec)
-RUN ln -s /usr/bin/docker /usr/bin/podman
-
 ########## environment #########################################################
 
 ENV DEV_PROMPT=E7
