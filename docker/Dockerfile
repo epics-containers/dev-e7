@@ -74,29 +74,56 @@ RUN install -m 0755 -d /etc/apt/keyrings && \
       "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
       tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt-get update && \
-    apt-get install  -yq --no-install-recommends docker-ce-cli
+    # NOTE not installing latest to avoid build deprecation warning
+    # for review - how to keep podman-from-docker working once docker build is removed?
+    # even docker-from-docker has challenges once this happens I believe.
+    # This has been tested with podman on the host and docker-ce-cli version
+    # 5:20.10.24~3-0~ubuntu-jammy which works but gives deprecation warning on build.
+    apt-get install  -yq --no-install-recommends docker-ce-cli==5:20.10.24~3-0~ubuntu-jammy
 
 # let podman clients find a podman-like cli if they need it (e.g. ec)
 RUN ln -s /usr/bin/docker /usr/bin/podman
 
 ########## environment #########################################################
 
+# disable buildkit as podman does not yet support it
+ENV DOCKER_BUILDKIT=0
+# add a prompt to indicate we are in the e7 dev container
 ENV DEV_PROMPT=E7
 
 
 ######### Add in EPICS 7 tools and build environ ###############################
 
-# ENV EPICS_ROOT=/repos/epics
-# ENV EPICS_BASE=${EPICS_ROOT}/epics-base
-# ENV EPICS_HOST_ARCH=linux-x86_64
-# ENV PATH=${EPICS_BASE}/bin/${EPICS_HOST_ARCH}:${PATH}
+ENV EPICS_ROOT=/repos/epics
+ENV EPICS_BASE=${EPICS_ROOT}/epics-base
+ENV EPICS_HOST_ARCH=linux-x86_64
+ENV PATH=${EPICS_BASE}/bin/${EPICS_HOST_ARCH}:${PATH}
 
-# COPY --from=ghcr.io/epics-containers/epics-base-linux-developer:23.2.1 ${EPICS_BASE} ${EPICS_BASE}
+COPY --from=ghcr.io/epics-containers/epics-base-linux-developer:23.2.1 ${EPICS_BASE} ${EPICS_BASE}
 
 ######### Misc Tools ###########################################################
 
 # add pie (python install editable) script in the path
 COPY pie /usr/local/bin/pie
 
+######### Python 3.10 and packages to support epics-containers ################
+
 RUN git config --global pull.rebase false
+
+ENV PYTHON_VERSION 3.10
+ENV VIRTUALENV=/venv
+
+# install required python version from deadsnakes if needed
+# uncomment below when not using python3.10 (which is default for ubuntu 22.04)
+# RUN DEBIAN_FRONTEND=noninteractive \
+#     apt-get -y install python${PYTHON_VERSION} python${PYTHON_VERSION}-venv
+
+# set up a global virtual environ for all projects in the container
+RUN python${PYTHON_VERSION} -m venv ${VIRTUALENV}
+ENV PATH=${VIRTUALENV}/bin:$PATH
+
+# make sure we have the latest pip
+RUN pip install --upgrade pip
+# install epics containers python tools
+RUN pip install python3-pip-skeleton[dev] epics-containers-cli>=0.4
 
