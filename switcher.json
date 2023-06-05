@@ -4,6 +4,10 @@
     "url": "https://epics-containers.github.io/dev-e7/main/"
   },
   {
+    "version": "23.6.1",
+    "url": "https://epics-containers.github.io/dev-e7/23.6.1/"
+  },
+  {
     "version": "23.5.1",
     "url": "https://epics-containers.github.io/dev-e7/23.5.1/"
   },
