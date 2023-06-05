@@ -53,7 +53,7 @@ RUN curl -L "https://github.com/int128/kubelogin/releases/download/v1.27.0/kubel
 ########## docker client #######################################################
 
 # Here we install the docker CLI only with the intention of using it to connect
-# to the host's docker or podman daemon.
+# to the host's docker or podman daemon. i.e. podman-from-docker or docker-from-docker.
 
 # If you are running podman on the host, you can use the host's podman as follows:
 # Enable a user podman service (once only):
@@ -79,7 +79,10 @@ RUN install -m 0755 -d /etc/apt/keyrings && \
     # even docker-from-docker has challenges once this happens I believe.
     # This has been tested with podman on the host and docker-ce-cli version
     # 5:20.10.24~3-0~ubuntu-jammy which works but gives deprecation warning on build.
-    apt-get install  -yq --no-install-recommends docker-ce-cli==5:20.10.24~3-0~ubuntu-jammy
+    apt-get install  -yq --no-install-recommends docker-ce-cli=5:20.10.24~3-0~ubuntu-jammy && \
+    # get docker bash completion
+    curl https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker -o /etc/bash_completion.d/docker.sh
+
 
 # let podman clients find a podman-like cli if they need it (e.g. ec)
 RUN ln -s /usr/bin/docker /usr/bin/podman
